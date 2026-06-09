@@ -22,7 +22,9 @@ import { ThemeToggleButton } from "../theme";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/#about-story" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Portfolio", href: "/#portfolio" },
   { label: "Projects", href: "/#projects" },
   { label: "Contact", href: "/#contact" },
 ];
@@ -82,7 +84,7 @@ const Navbar = () => {
                   display: { xs: "none", sm: "block" },
                 }}
               >
-                MATTHEW<span style={{ color: "#3b82f6" }}>.</span>
+                AKINYEMI<span style={{ color: "#3b82f6" }}>.</span>
               </Typography>
             </Box>
 

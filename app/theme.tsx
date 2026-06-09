@@ -28,39 +28,56 @@ export function ThemeToggleProvider({ children }: { children: React.ReactNode })
       mode: darkMode ? "dark" : "light",
       primary: {
         main: "#3b82f6",
+        light: "#60a5fa",
+        dark: "#2563eb",
+      },
+      secondary: {
+        main: "#10b981",
       },
       background: {
-        default: darkMode ? "#0a0a0a" : "#f8fafc",
-        paper: darkMode ? "#141414" : "#ffffff",
+        default: darkMode ? "#050505" : "#f8fafc",
+        paper: darkMode ? "#0f0f0f" : "#ffffff",
+      },
+      text: {
+        primary: darkMode ? "#f8fafc" : "#0f172a",
+        secondary: darkMode ? "#94a3b8" : "#475569",
       },
     },
     typography: {
-      fontFamily: "var(--font-roboto)",
-      h1: { fontWeight: 700 },
-      h2: { fontWeight: 700 },
-      h3: { fontWeight: 600 },
+      fontFamily: "var(--font-inter)",
+      h1: { fontWeight: 800, letterSpacing: "-0.02em" },
+      h2: { fontWeight: 700, letterSpacing: "-0.01em" },
+      h3: { fontWeight: 700 },
       h4: { fontWeight: 600 },
+      button: { textTransform: "none", fontWeight: 600 },
     },
     shape: {
-      borderRadius: 12,
+      borderRadius: 16,
     },
     components: {
       MuiButton: {
         styleOverrides: {
           root: {
-            textTransform: "none",
-            fontWeight: 500,
-            borderRadius: "8px",
+            borderRadius: "12px",
+            padding: "10px 24px",
+            fontSize: "1rem",
+          },
+          containedPrimary: {
+            background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
+            boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.39)",
+            "&:hover": {
+              boxShadow: "0 6px 20px rgba(59, 130, 246, 0.23)",
+            },
           },
         },
       },
       MuiCard: {
         styleOverrides: {
           root: {
-            backgroundColor: darkMode ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)",
-            backdropFilter: "blur(12px)",
-            border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`,
-            boxShadow: "none",
+            backgroundColor: darkMode ? "rgba(15, 15, 15, 0.6)" : "rgba(255, 255, 255, 0.8)",
+            backdropFilter: "blur(20px)",
+            border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)"}`,
+            boxShadow: darkMode ? "0 8px 32px 0 rgba(0, 0, 0, 0.37)" : "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
           },
         },
       },

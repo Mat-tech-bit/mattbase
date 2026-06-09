@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Box, Container, Grid, Typography, Stack, IconButton, Divider, useTheme } from "@mui/material";
-import { Mail, Globe } from "lucide-react";
+import { Mail, Phone, Globe } from "lucide-react";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -51,10 +51,10 @@ const Footer = () => {
           <Grid size={{ xs: 12, md: 4 }}>
             <Typography
               variant="h5"
-              fontWeight={800}
-              sx={{ mb: 3, textAlign: { xs: "center", md: "left" } }}
+              fontWeight={900}
+              sx={{ mb: 3, textAlign: { xs: "center", md: "left" }, letterSpacing: "-0.03em" }}
             >
-              MATTHEW<span style={{ color: "#3b82f6" }}>.</span>
+              AKINYEMI<span style={{ color: "#3b82f6" }}>.</span>
             </Typography>
             <Typography
               variant="body1"
@@ -147,9 +147,9 @@ const Footer = () => {
                 </Typography>
               </Box>
               <Box sx={{ display: "flex", gap: 1.5, alignItems: "center" }}>
-                <Globe size={18} color="#3b82f6" />
+                <Phone size={18} color="#3b82f6" />
                 <Typography variant="body2" color="text.secondary">
-                  www.matthewdak.com
+                  09025546836
                 </Typography>
               </Box>
             </Stack>
@@ -168,7 +168,7 @@ const Footer = () => {
           }}
         >
           <Typography variant="body2" color="text.secondary" sx={{ textAlign: "center" }}>
-            © {new Date().getFullYear()} Matthew Akinyemi. All rights reserved.
+            © {new Date().getFullYear()} Akinyemi. All rights reserved.
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Built with Next.js & MUI

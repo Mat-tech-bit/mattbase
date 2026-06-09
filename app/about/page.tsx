@@ -4,16 +4,17 @@ import {
   Box,
   Button,
   Container,
-  Grid,
   Typography,
   Stack,
   useTheme,
   IconButton,
+  Tooltip,
+  Grid,
 } from "@mui/material";
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, Download, Globe, Users, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail, Globe, Send, MessageSquare, Phone } from "lucide-react";
 
-const AboutPage = () => {
+function Hero() {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
 
@@ -22,7 +23,7 @@ const AboutPage = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -33,248 +34,300 @@ const AboutPage = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut",
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
 
   return (
-    <Container maxWidth="lg" id="about">
-      <Box
-        component={motion.div}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        sx={{
-          minHeight: { xs: "auto", md: "80vh" },
-          display: "flex",
-          alignItems: "center",
-          py: { xs: 10, md: 15 },
-        }}
-      >
-        <Grid container spacing={{ xs: 6, md: 8 }} alignItems="center">
-          {/* Text Content */}
-          <Grid size={{ xs: 12, md: 7 }} order={{ xs: 2, md: 1 }}>
-            <motion.div variants={itemVariants}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  color: "primary.main",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: 2,
-                  mb: 2,
-                  textAlign: { xs: "center", md: "left" },
-                }}
-              >
-                Software Engineer
-              </Typography>
-            </motion.div>
+    <Box 
+      component="section" 
+      id="hero"
+      sx={{ 
+        position: "relative", 
+        overflow: "hidden",
+        pt: { xs: 10, md: 15 },
+        pb: { xs: 10, md: 15 },
+        minHeight: { xs: "auto", md: "100vh" },
+        display: "flex",
+        alignItems: "center"
+      }}
+    >
+      {/* Background Elements */}
+      <div className="hero-bg" />
+      <div className="grid-bg" />
 
-            <motion.div variants={itemVariants}>
-              <Typography
-                variant="h1"
-                sx={{
-                  fontSize: { xs: "2.8rem", sm: "3.5rem", md: "5rem" },
-                  fontWeight: 900,
-                  lineHeight: 1.1,
-                  mb: 3,
-                  textAlign: { xs: "center", md: "left" },
-                  background: isDark
-                    ? "linear-gradient(135deg, #fff 0%, #3b82f6 100%)"
-                    : "linear-gradient(135deg, #0f172a 0%, #3b82f6 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Matthew <br /> Akinyemi
-              </Typography>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "text.secondary",
-                  mb: 5,
-                  maxWidth: "700px",
-                  lineHeight: 1.7,
-                  fontWeight: 400,
-                  textAlign: { xs: "center", md: "left" },
-                  mx: { xs: "auto", md: 0 },
-                }}
-              >
-                Architecting high-performance, visually immersive web applications 
-                through modern engineering. Specializing in professional-grade 
-                React and Next.js development, backed by a robust full-stack 
-                foundation in TypeScript, Node.js, and the MERN ecosystem. 
-                Dedicated to engineering scalable architectures and 
-                state-of-the-art digital experiences.
-              </Typography>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={2}
-                justifyContent={{ xs: "center", md: "flex-start" }}
-              >
-                <Button
-                  variant="contained"
-                  size="large"
-                  endIcon={<ArrowRight size={20} />}
-                  onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+      <Container maxWidth="lg">
+        <Grid container spacing={8} alignItems="center">
+          <Grid size={{ xs: 12, md: 7 }}>
+            <Box
+              component={motion.div}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              sx={{ textAlign: { xs: "center", md: "left" }, position: "relative", zIndex: 1 }}
+            >
+              {/* Availability Badge */}
+              <motion.div variants={itemVariants}>
+                <Box
                   sx={{
-                    px: 4,
-                    py: 1.8,
-                    fontSize: "1.1rem",
-                    boxShadow: isDark ? "0 10px 20px rgba(59, 130, 246, 0.3)" : "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 1.5,
+                    px: 2,
+                    py: 0.8,
+                    borderRadius: "100px",
+                    bgcolor: isDark ? "rgba(16, 185, 129, 0.1)" : "rgba(16, 185, 129, 0.05)",
+                    border: "1px solid",
+                    borderColor: isDark ? "rgba(16, 185, 129, 0.2)" : "rgba(16, 185, 129, 0.1)",
+                    mb: 4,
                   }}
                 >
-                  View My Work
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  startIcon={<Download size={20} />}
-                  sx={{
-                    px: 4,
-                    py: 1.8,
-                    fontSize: "1.1rem",
-                    borderColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
-                    color: "text.primary",
-                    "&:hover": {
-                      borderColor: "primary.main",
-                      bgcolor: isDark ? "rgba(59, 130, 246, 0.05)" : "rgba(59, 130, 246, 0.02)",
-                    },
-                  }}
-                >
-                  Download CV
-                </Button>
-              </Stack>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <Stack
-                direction="row"
-                spacing={3}
-                sx={{ mt: 8 }}
-                justifyContent={{ xs: "center", md: "flex-start" }}
-              >
-                {[
-                  { icon: <Globe size={24} />, link: "#" },
-                  { icon: <Users size={24} />, link: "#" },
-                  { icon: <Mail size={24} />, link: "#" },
-                ].map((social, i) => (
-                  <IconButton
-                    key={i}
-                    href={social.link}
+                  <Box
                     sx={{
-                      color: "text.secondary",
-                      bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)",
-                      border: "1px solid",
-                      borderColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)",
-                      transition: "0.3s",
+                      width: 8,
+                      height: 8,
+                      borderRadius: "50%",
+                      bgcolor: "#10b981",
+                      boxShadow: "0 0 12px #10b981",
+                      animation: "pulse 2s infinite",
+                    }}
+                  />
+                  <Typography variant="body2" sx={{ color: "#10b981", fontWeight: 700, letterSpacing: 0.5 }}>
+                    AVAILABLE FOR NEW PROJECTS
+                  </Typography>
+                </Box>
+              </motion.div>
+
+              {/* Headline */}
+              <motion.div variants={itemVariants}>
+                <Typography
+                  variant="h1"
+                  sx={{
+                    fontSize: { xs: "2.8rem", sm: "4rem", md: "5rem" },
+                    fontWeight: 900,
+                    lineHeight: 1.1,
+                    mb: 3,
+                    letterSpacing: "-0.04em",
+                    background: isDark 
+                      ? "linear-gradient(135deg, #fff 0%, #94a3b8 100%)"
+                      : "linear-gradient(135deg, #0f172a 0%, #475569 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Engineering <br /> Polished Digital <br /> Experiences.
+                </Typography>
+              </motion.div>
+
+              {/* Subheader */}
+              <motion.div variants={itemVariants}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "text.secondary",
+                    mb: 4,
+                    maxWidth: { xs: "100%", md: "600px" },
+                    mx: { xs: "auto", md: "0" },
+                    lineHeight: 1.6,
+                    fontSize: { xs: "1.05rem", md: "1.2rem" },
+                    fontWeight: 400,
+                  }}
+                >
+                  I&apos;m <strong>Akinyemi Matthew</strong>, a Full-Stack Engineer specializing in building 
+                  high-performance applications with Next.js, TypeScript, 
+                  and robust backend architectures.
+                </Typography>
+              </motion.div>
+
+              {/* CTAs */}
+              <motion.div variants={itemVariants}>
+                <Stack
+                  direction={{ xs: "column", sm: "row" }}
+                  spacing={2}
+                  justifyContent={{ xs: "center", md: "flex-start" }}
+                  sx={{ mb: 6 }}
+                >
+                  <Button
+                    variant="contained"
+                    size="large"
+                    endIcon={<ArrowRight size={20} />}
+                    onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                    className="gradient-primary"
+                    sx={{
+                      px: 5,
+                      py: 2,
+                      fontSize: "1rem",
+                      fontWeight: 700,
+                      boxShadow: "0 20px 40px -12px rgba(59, 130, 246, 0.4)",
                       "&:hover": {
-                        color: "primary.main",
-                        transform: "translateY(-5px)",
-                        bgcolor: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)",
-                      },
+                        transform: "translateY(-2px)",
+                        boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.5)",
+                      }
                     }}
                   >
-                    {social.icon}
-                  </IconButton>
-                ))}
-              </Stack>
-            </motion.div>
+                    View Projects
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    startIcon={<Download size={20} />}
+                    sx={{
+                      px: 5,
+                      py: 2,
+                      fontSize: "1rem",
+                      fontWeight: 600,
+                      borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+                      color: isDark ? "white" : "text.primary",
+                      backdropFilter: "blur(10px)",
+                      "&:hover": {
+                        borderColor: isDark ? "white" : "primary.main",
+                        bgcolor: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.02)",
+                      }
+                    }}
+                  >
+                    Get CV
+                  </Button>
+                </Stack>
+              </motion.div>
+
+              {/* Social Links */}
+              <motion.div variants={itemVariants}>
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  justifyContent={{ xs: "center", md: "flex-start" }}
+                  sx={{ color: "text.secondary" }}
+                >
+                  {[
+                    { icon: <Globe size={22} />, label: "Health Center", href: "https://mat-oauhc.vercel.app/" },
+                    { icon: <MessageSquare size={22} />, label: "LinkedIn", href: "https://www.linkedin.com/in/matthewakinyemi24/" },
+                    { icon: <Send size={22} />, label: "Twitter", href: "https://twitter.com/Mathew7746" },
+                    { icon: <Phone size={22} />, label: "Call Me", href: "tel:09025546836" },
+                    { icon: <Mail size={22} />, label: "Email", href: "mailto:matthewakinyemi24@gmail.com" },
+                  ].map((social, i) => (
+                    <Tooltip key={i} title={social.label} arrow>
+                      <IconButton
+                        href={social.href}
+                        target="_blank"
+                        sx={{
+                          color: "inherit",
+                          p: 1.5,
+                          bgcolor: "rgba(255,255,255,0.03)",
+                          border: "1px solid rgba(255,255,255,0.05)",
+                          transition: "0.3s",
+                          "&:hover": {
+                            color: "primary.main",
+                            bgcolor: "rgba(59, 130, 246, 0.1)",
+                            borderColor: "primary.main",
+                            transform: "translateY(-5px)",
+                          }
+                        }}
+                      >
+                        {social.icon}
+                      </IconButton>
+                    </Tooltip>
+                  ))}
+                </Stack>
+              </motion.div>
+            </Box>
           </Grid>
 
-          {/* Image / Visual Element */}
-          <Grid size={{ xs: 12, md: 5 }} order={{ xs: 1, md: 2 }}>
+          <Grid size={{ xs: 12, md: 5 }}>
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              style={{ position: "relative" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Background Shapes */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: "120%",
-                  height: "120%",
-                  background: isDark
-                    ? "radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)"
-                    : "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
-                  zIndex: -1,
-                }}
-              />
-
               <Box
                 sx={{
                   position: "relative",
-                  width: { xs: "240px", sm: "300px", md: "400px" },
-                  height: { xs: "300px", sm: "380px", md: "500px" },
-                  margin: "0 auto",
-                  borderRadius: "30px",
-                  overflow: "hidden",
-                  border: "1px solid",
-                  borderColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)",
-                  boxShadow: isDark
-                    ? "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
-                    : "0 25px 50px -12px rgba(0, 0, 0, 0.1)",
+                  width: "100%",
+                  pt: "100%", // 1:1 Aspect Ratio
+                  maxWidth: "450px",
+                  mx: "auto",
                 }}
               >
+                {/* Profile Picture Frame */}
                 <Box
-                  component="img"
-                  src="/portfolioPic1.jpg"
-                  alt="Matthew"
                   sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    borderRadius: "32px",
+                    overflow: "hidden",
+                    border: "8px solid",
+                    borderColor: "rgba(255, 255, 255, 0.03)",
+                    boxShadow: "0 40px 80px -20px rgba(0,0,0,0.5)",
+                    zIndex: 2,
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src="/portfolioPic1.jpg"
+                    alt="Akinyemi Matthew"
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      filter: "contrast(1.05)",
+                    }}
+                  />
+                </Box>
+                
+                {/* Decorative Background for Image */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "10%",
+                    left: "-10%",
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
+                    bgcolor: "primary.main",
+                    borderRadius: "32px",
+                    opacity: 0.1,
+                    filter: "blur(60px)",
+                    zIndex: 1,
                   }}
                 />
-              </Box>
-
-              {/* Stats Overlay */}
-              <Box
-                component={motion.div}
-                initial={{ x: 50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                sx={{
-                  position: "absolute",
-                  bottom: { xs: 20, md: 40 },
-                  right: { xs: 0, sm: 20, md: -30 },
-                  p: 3,
-                  bgcolor: isDark ? "rgba(30, 30, 30, 0.8)" : "rgba(255, 255, 255, 0.8)",
-                  backdropFilter: "blur(12px)",
-                  borderRadius: "16px",
-                  border: "1px solid",
-                  borderColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)",
-                  display: { xs: "none", sm: "block" },
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-                }}
-              >
-                <Typography variant="h4" fontWeight={800} color="primary">
-                  2+
-                </Typography>
-                <Typography variant="body2" color="text.secondary" fontWeight={500}>
-                  Years of <br /> Experience
-                </Typography>
               </Box>
             </motion.div>
           </Grid>
         </Grid>
-      </Box>
-    </Container>
-  );
-};
+      </Container>
 
-export default AboutPage;
+      {/* Floating Shapes for Depth */}
+      <Box
+        component={motion.div}
+        animate={{
+          y: [0, -20, 0],
+          rotate: [0, 10, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        sx={{
+          position: "absolute",
+          top: "15%",
+          right: "10%",
+          width: 150,
+          height: 150,
+          borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
+          background: "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2))",
+          filter: "blur(40px)",
+          zIndex: 0,
+          display: { xs: "none", md: "block" },
+          opacity: isDark ? 1 : 0.5
+        }}
+      />
+    </Box>
+  );
+}
+;
+
+export default Hero;

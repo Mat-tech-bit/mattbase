@@ -1,16 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.css";
-import { Roboto } from "next/font/google";
+
 import { ThemeToggleProvider } from "./theme";
 import Navbar from "./navbar/page";
 import Footer from "./footer/page";
 
-const roboto = Roboto({
-  weight: ["300", "400", "500", "700", "900"],
+import { Inter } from "next/font/google";
+
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-roboto",
+  variable: "--font-inter",
 });
 
 export const viewport: Viewport = {
@@ -41,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-      <body className={roboto.variable}>
+      <body className={inter.variable}>
         <AppRouterCacheProvider>
           <ThemeToggleProvider>
             <div style={{ overflowX: "hidden", width: "100%", position: "relative" }}>

@@ -10,9 +10,12 @@ import {
   Container,
   Stack,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Globe, Users, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Globe, MessageSquare } from "lucide-react";
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 type FormData = {
   name: string;
@@ -26,6 +29,8 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -42,13 +47,13 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: <Mail size={24} />, label: "Email", value: "matthew.akinyemi@email.com" },
-    { icon: <Phone size={24} />, label: "Phone", value: "+234 812 345 6789" },
+    { icon: <Mail size={24} />, label: "Email", value: "matthewakinyemi24@gmail.com" },
+    { icon: <Phone size={24} />, label: "Phone", value: "09025546836" },
     { icon: <MapPin size={24} />, label: "Location", value: "Lagos, Nigeria" },
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 8, md: 15 } }}>
+    <Container maxWidth="lg" sx={{ py: { xs: 15, md: 25 } }} id="contact">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -58,34 +63,36 @@ export default function Contact() {
         <Typography
           variant="h2"
           sx={{
-            fontWeight: 800,
+            fontWeight: 900,
             mb: 2,
             textAlign: "center",
-            fontSize: { xs: "2.5rem", md: "3.5rem" },
+            fontSize: { xs: "3rem", md: "4.5rem" },
+            letterSpacing: "-0.04em",
           }}
         >
-          Get In <span style={{ color: "#3b82f6" }}>Touch</span>
+          Let&apos;s <span style={{ color: "#3b82f6" }}>Collaborate</span>
         </Typography>
         <Typography
           variant="h6"
           sx={{
             color: "text.secondary",
             textAlign: "center",
-            mb: 8,
+            mb: 10,
             maxWidth: "600px",
             mx: "auto",
             fontWeight: 400,
+            lineHeight: 1.6,
           }}
         >
-          Have a project in mind or just want to say hi? I'd love to hear from 
-          you. Feel free to reach out using the form or social links below.
+          Whether you have a startup idea, a complex engineering challenge, 
+          or just want to talk shop, my inbox is always open.
         </Typography>
       </motion.div>
 
-      <Grid container spacing={6}>
+      <Grid container spacing={8}>
         {/* Contact Info */}
         <Grid size={{ xs: 12, md: 5 }}>
-          <Stack spacing={4}>
+          <Stack spacing={5}>
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.label}
@@ -94,23 +101,25 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Box sx={{ display: "flex", gap: 2.5, alignItems: "center" }}>
+                <Box sx={{ display: "flex", gap: 3, alignItems: "center" }}>
                   <Box
                     sx={{
-                      p: 1.5,
-                      borderRadius: "12px",
-                      bgcolor: "rgba(59, 130, 246, 0.1)",
+                      p: 2,
+                      borderRadius: "16px",
+                      bgcolor: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)",
                       color: "primary.main",
                       display: "flex",
+                      border: "1px solid",
+                      borderColor: isDark ? "rgba(59, 130, 246, 0.2)" : "rgba(59, 130, 246, 0.1)",
                     }}
                   >
                     {info.icon}
                   </Box>
                   <Box>
-                    <Typography variant="subtitle2" color="text.secondary">
+                    <Typography variant="overline" color="primary" sx={{ fontWeight: 800, letterSpacing: 1.5 }}>
                       {info.label}
                     </Typography>
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                       {info.value}
                     </Typography>
                   </Box>
@@ -119,25 +128,37 @@ export default function Contact() {
             ))}
 
             <Box sx={{ pt: 4 }}>
-              <Typography variant="h6" fontWeight={700} sx={{ mb: 2 }}>
-                Follow Me
+              <Typography variant="h6" sx={{ fontWeight: 800, mb: 3 }}>
+                Digital Presence
               </Typography>
               <Stack direction="row" spacing={2}>
-                {[Globe, Users, MessageSquare].map((Icon, i) => (
+                {[
+                  { Icon: Globe, isLucide: true },
+                  { Icon: MessageSquare, isLucide: true },
+                  { Icon: TwitterIcon, isLucide: false },
+                  { Icon: LinkedInIcon, isLucide: false }
+                ].map((item, i) => (
                   <IconButton
                     key={i}
                     sx={{
-                      bgcolor: "rgba(255, 255, 255, 0.03)",
-                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      p: 1.5,
+                      bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)",
+                      border: "1px solid",
+                      borderColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)",
                       transition: "0.3s",
                       "&:hover": {
                         bgcolor: "primary.main",
                         color: "white",
+                        borderColor: "primary.main",
                         transform: "translateY(-5px)",
                       },
                     }}
                   >
-                    <Icon size={20} />
+                    {item.isLucide ? (
+                      <item.Icon size={22} />
+                    ) : (
+                      <item.Icon sx={{ fontSize: 22 }} />
+                    )}
                   </IconButton>
                 ))}
               </Stack>
@@ -148,12 +169,21 @@ export default function Contact() {
         {/* Contact Form */}
         <Grid size={{ xs: 12, md: 7 }}>
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Paper sx={{ p: { xs: 4, md: 6 } }}>
+            <Paper 
+              elevation={0}
+              sx={{ 
+                p: { xs: 4, md: 6 },
+                borderRadius: 4,
+                bgcolor: isDark ? "rgba(255, 255, 255, 0.02)" : "#fff",
+                border: "1px solid",
+                borderColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)",
+              }}
+            >
               <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
                   <Grid size={{ xs: 12, sm: 6 }}>
@@ -161,10 +191,12 @@ export default function Contact() {
                       fullWidth
                       label="Your Name"
                       name="name"
-                      variant="outlined"
+                      variant="filled"
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      sx={{ bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", borderRadius: 1 }}
+                      slotProps={{ input: { disableUnderline: true } }}
                     />
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6 }}>
@@ -173,10 +205,12 @@ export default function Contact() {
                       label="Your Email"
                       name="email"
                       type="email"
-                      variant="outlined"
+                      variant="filled"
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      sx={{ bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", borderRadius: 1 }}
+                      slotProps={{ input: { disableUnderline: true } }}
                     />
                   </Grid>
                   <Grid size={{ xs: 12 }}>
@@ -185,11 +219,13 @@ export default function Contact() {
                       label="Your Message"
                       name="message"
                       multiline
-                      rows={6}
-                      variant="outlined"
+                      rows={5}
+                      variant="filled"
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      sx={{ bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", borderRadius: 1 }}
+                      slotProps={{ input: { disableUnderline: true } }}
                     />
                   </Grid>
                   <Grid size={{ xs: 12 }}>
@@ -199,7 +235,13 @@ export default function Contact() {
                       size="large"
                       fullWidth
                       endIcon={<Send size={20} />}
-                      sx={{ py: 2, fontSize: "1.1rem" }}
+                      className="gradient-primary"
+                      sx={{ 
+                        py: 2, 
+                        fontSize: "1.1rem", 
+                        fontWeight: 700,
+                        boxShadow: "0 15px 30px -10px rgba(59, 130, 246, 0.5)"
+                      }}
                     >
                       Send Message
                     </Button>
