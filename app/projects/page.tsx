@@ -33,17 +33,19 @@ const ProjectCard = ({ project, index, isDark }: { project: any, index: number, 
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          bgcolor: isDark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.8)",
+          bgcolor: isDark ? "rgba(255, 255, 255, 0.02)" : "rgba(255, 255, 255, 0.7)",
+          backdropFilter: "blur(16px)",
           border: "1px solid",
-          borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
+          borderColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.06)",
+          borderRadius: "16px",
           overflow: "hidden",
           transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
           "&:hover": {
             borderColor: "primary.main",
-            transform: "translateY(-8px)",
+            transform: "translateY(-6px)",
             boxShadow: isDark 
-              ? "0 30px 60px -12px rgba(0,0,0,0.5), 0 18px 36px -18px rgba(59, 130, 246, 0.3)"
-              : "0 30px 60px -12px rgba(0,0,0,0.05)",
+              ? "0 20px 40px -10px rgba(0,0,0,0.5), 0 10px 20px -10px rgba(59, 130, 246, 0.2)"
+              : "0 20px 40px -10px rgba(0,0,0,0.06)",
           },
         }}
       >
@@ -64,34 +66,54 @@ const ProjectCard = ({ project, index, isDark }: { project: any, index: number, 
               filter: isDark ? "brightness(0.85)" : "none"
             }}
           />
-          <Box sx={{ position: "absolute", top: 16, right: 16 }}>
+          <Box sx={{ position: "absolute", top: 12, right: 12 }}>
             <Chip
               label={project.category}
               sx={{
-                bgcolor: "rgba(0, 0, 0, 0.7)",
-                backdropFilter: "blur(12px)",
+                bgcolor: "rgba(0, 0, 0, 0.75)",
+                backdropFilter: "blur(8px)",
                 color: "white",
                 fontWeight: 700,
-                fontSize: "0.75rem",
-                border: "1px solid rgba(255,255,255,0.1)",
+                fontSize: "0.65rem",
+                height: "24px",
+                border: "1px solid rgba(255,255,255,0.15)",
+                borderRadius: "6px",
               }}
             />
           </Box>
         </Box>
 
-        <CardContent sx={{ flexGrow: 1, p: { xs: 3, md: 4 } }}>
-          <Typography variant="h4" sx={{ fontWeight: 800, mb: 2, letterSpacing: "-0.01em" }}>
+        <CardContent sx={{ flexGrow: 1, p: { xs: 2.5, md: 3 } }}>
+          <Typography 
+            variant="h5" 
+            sx={{ 
+              fontWeight: 800, 
+              mb: 1.5, 
+              letterSpacing: "-0.02em",
+              fontSize: { xs: "1.15rem", md: "1.25rem" }
+            }}
+          >
             {project.title}
           </Typography>
           <Typography
-            variant="body1"
+            variant="body2"
             color="text.secondary"
-            sx={{ mb: 4, lineHeight: 1.7, fontSize: "1rem" }}
+            sx={{ 
+              mb: 2.5, 
+              lineHeight: 1.6, 
+              fontSize: "0.875rem",
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              minHeight: "4.8em"
+            }}
           >
             {project.description}
           </Typography>
 
-          <Stack direction="row" spacing={1} flexWrap="wrap" gap={1} sx={{ mb: 4 }}>
+          <Stack direction="row" spacing={1} flexWrap="wrap" gap={0.75} sx={{ mb: 2.5 }}>
             {project.tech.map((tech: string) => (
               <Chip
                 key={tech}
@@ -99,10 +121,12 @@ const ProjectCard = ({ project, index, isDark }: { project: any, index: number, 
                 size="small"
                 variant="outlined"
                 sx={{ 
-                  fontSize: "0.7rem", 
+                  fontSize: "0.65rem", 
                   fontWeight: 600,
-                  borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
-                  color: "text.secondary"
+                  borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+                  bgcolor: isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.01)",
+                  color: "text.secondary",
+                  height: "22px",
                 }}
               />
             ))}
@@ -114,23 +138,23 @@ const ProjectCard = ({ project, index, isDark }: { project: any, index: number, 
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3 }}
               >
-                <Box sx={{ pt: 2, borderTop: "1px solid", borderColor: "divider", mt: 2 }}>
-                  <Typography variant="subtitle2" color="primary" sx={{ fontWeight: 800, mb: 1, textTransform: "uppercase" }}>
+                <Box sx={{ pt: 2, borderTop: "1px solid", borderColor: "divider", mt: 1.5 }}>
+                  <Typography variant="subtitle2" color="primary" sx={{ fontWeight: 800, mb: 0.5, textTransform: "uppercase", fontSize: "0.75rem" }}>
                     The Problem
                   </Typography>
-                  <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>{project.problem}</Typography>
+                  <Typography variant="body2" sx={{ mb: 2, color: "text.secondary", fontSize: "0.8rem", lineHeight: 1.5 }}>{project.problem}</Typography>
                   
-                  <Typography variant="subtitle2" color="primary" sx={{ fontWeight: 800, mb: 1, textTransform: "uppercase" }}>
+                  <Typography variant="subtitle2" color="primary" sx={{ fontWeight: 800, mb: 0.5, textTransform: "uppercase", fontSize: "0.75rem" }}>
                     The Solution
                   </Typography>
-                  <Typography variant="body2" sx={{ mb: 3, color: "text.secondary" }}>{project.solution}</Typography>
+                  <Typography variant="body2" sx={{ mb: 2, color: "text.secondary", fontSize: "0.8rem", lineHeight: 1.5 }}>{project.solution}</Typography>
 
-                  <Typography variant="subtitle2" color="primary" sx={{ fontWeight: 800, mb: 1, textTransform: "uppercase" }}>
+                  <Typography variant="subtitle2" color="primary" sx={{ fontWeight: 800, mb: 0.5, textTransform: "uppercase", fontSize: "0.75rem" }}>
                     Business Impact
                   </Typography>
-                  <Typography variant="body2" sx={{ mb: 3, color: "text.secondary", fontStyle: "italic" }}>{project.impact}</Typography>
+                  <Typography variant="body2" sx={{ mb: 2, color: "text.secondary", fontStyle: "italic", fontSize: "0.8rem", lineHeight: 1.5 }}>{project.impact}</Typography>
                 </Box>
               </motion.div>
             )}
@@ -138,23 +162,33 @@ const ProjectCard = ({ project, index, isDark }: { project: any, index: number, 
 
           <Button
             onClick={() => setExpanded(!expanded)}
-            endIcon={expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            sx={{ mt: 1, fontWeight: 700, color: "primary.main" }}
+            endIcon={expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            sx={{ 
+              mt: 0.5, 
+              fontWeight: 700, 
+              color: "primary.main", 
+              fontSize: "0.775rem",
+              p: 0,
+              minWidth: 0,
+              "&:hover": { bgcolor: "transparent" }
+            }}
           >
             {expanded ? "Show Less" : "Case Study Peek"}
           </Button>
         </CardContent>
 
-        <Box sx={{ p: { xs: 3, md: 4 }, pt: 0, display: "flex", gap: 2 }}>
+        <Box sx={{ p: { xs: 2.5, md: 3 }, pt: 0, display: "flex", gap: 1.5 }}>
           <Button
             fullWidth
             variant="outlined"
-            startIcon={<Code2 size={18} />}
+            startIcon={<Code2 size={16} />}
             href={project.github}
             target="_blank"
             sx={{ 
-              py: 1.5,
+              py: 1,
               fontWeight: 700,
+              fontSize: "0.8rem",
+              borderRadius: "8px",
               borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
               color: "text.primary"
             }}
@@ -164,11 +198,16 @@ const ProjectCard = ({ project, index, isDark }: { project: any, index: number, 
           <Button
             fullWidth
             variant="contained"
-            startIcon={<ExternalLink size={18} />}
+            startIcon={<ExternalLink size={16} />}
             href={project.live}
             target="_blank"
             className="gradient-primary"
-            sx={{ py: 1.5, fontWeight: 700 }}
+            sx={{ 
+              py: 1, 
+              fontWeight: 700,
+              fontSize: "0.8rem",
+              borderRadius: "8px",
+            }}
           >
             Live Demo
           </Button>
@@ -255,10 +294,10 @@ const ProjectsPage = () => {
       </Stack>
 
       {/* Projects Grid */}
-      <Grid container spacing={4}>
+      <Grid container spacing={3}>
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
-            <Grid size={{ xs: 12, md: 6 }} key={project.title}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={project.title}>
               <ProjectCard project={project} index={index} isDark={isDark} />
             </Grid>
           ))}
