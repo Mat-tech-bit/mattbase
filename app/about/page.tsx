@@ -170,6 +170,9 @@ function Hero() {
                     View Projects
                   </Button>
                   <Button
+                    component="a"
+                    href="/Matthew_Akinyemi_Professional_CV.pdf"
+                    download="Matthew_Akinyemi_Professional_CV.pdf"
                     variant="outlined"
                     size="large"
                     startIcon={<Download size={20} />}
