@@ -248,7 +248,7 @@ function Hero() {
                 sx={{
                   position: "relative",
                   width: "100%",
-                  pt: "100%", // 1:1 Aspect Ratio
+                  aspectRatio: "3/4", // 3:4 Aspect Ratio to display the full portrait image
                   maxWidth: "450px",
                   mx: "auto",
                 }}
@@ -271,7 +271,7 @@ function Hero() {
                 >
                   <Box
                     component="img"
-                    src="/portfolioPic1.jpg"
+                    src="/portfolioPic_new.jpg"
                     alt="Akinyemi Matthew"
                     sx={{
                       width: "100%",

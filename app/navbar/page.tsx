@@ -74,7 +74,7 @@ const Navbar = () => {
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <Avatar 
                 alt="Matthew" 
-                src="/portfolioPic1.jpg" 
+                src="/portfolioPic_new.jpg" 
                 sx={{ width: 40, height: 40, border: "2px solid #3b82f6" }}
               />
               <Typography
