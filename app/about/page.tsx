@@ -6,18 +6,15 @@ import {
   Container,
   Typography,
   Stack,
-  useTheme,
-  IconButton,
   Tooltip,
+  IconButton,
   Grid,
 } from "@mui/material";
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, Download, Mail, Globe, Send, MessageSquare, Phone } from "lucide-react";
+import { ArrowRight, Play, Terminal, Shield, Cpu, HelpCircle } from "lucide-react";
+import Link from "next/link";
 
 function Hero() {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
-
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,7 +48,8 @@ function Hero() {
         pb: { xs: 10, md: 15 },
         minHeight: { xs: "auto", md: "100vh" },
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: "#052424",
       }}
     >
       {/* Background Elements */}
@@ -78,9 +76,8 @@ function Hero() {
                     px: 2,
                     py: 0.8,
                     borderRadius: "100px",
-                    bgcolor: isDark ? "rgba(16, 185, 129, 0.1)" : "rgba(16, 185, 129, 0.05)",
-                    border: "1px solid",
-                    borderColor: isDark ? "rgba(16, 185, 129, 0.2)" : "rgba(16, 185, 129, 0.1)",
+                    bgcolor: "rgba(171, 255, 2, 0.1)",
+                    border: "1px solid rgba(171, 255, 2, 0.2)",
                     mb: 4,
                   }}
                 >
@@ -89,13 +86,13 @@ function Hero() {
                       width: 8,
                       height: 8,
                       borderRadius: "50%",
-                      bgcolor: "#10b981",
-                      boxShadow: "0 0 12px #10b981",
+                      bgcolor: "#abff02",
+                      boxShadow: "0 0 12px #abff02",
                       animation: "pulse 2s infinite",
                     }}
                   />
-                  <Typography variant="body2" sx={{ color: "#10b981", fontWeight: 700, letterSpacing: 0.5 }}>
-                    AVAILABLE FOR NEW PROJECTS
+                  <Typography variant="body2" sx={{ color: "#abff02", fontWeight: 700, letterSpacing: 1, fontFamily: "var(--font-mono)", fontSize: "11px" }}>
+                    YARD OPERATING SYSTEM ONLINE [v2.4]
                   </Typography>
                 </Box>
               </motion.div>
@@ -110,14 +107,12 @@ function Hero() {
                     lineHeight: 1.1,
                     mb: 3,
                     letterSpacing: "-0.04em",
-                    background: isDark 
-                      ? "linear-gradient(135deg, #fff 0%, #94a3b8 100%)"
-                      : "linear-gradient(135deg, #0f172a 0%, #475569 100%)",
+                    background: "linear-gradient(135deg, #ffffff 0%, #a2a6b4 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  Engineering <br /> Polished Digital <br /> Experiences.
+                  The New <br /> Industry Standard <br /> in Yard Operations.
                 </Typography>
               </motion.div>
 
@@ -126,7 +121,7 @@ function Hero() {
                 <Typography
                   variant="h6"
                   sx={{
-                    color: "text.secondary",
+                    color: "#a2a6b4",
                     mb: 4,
                     maxWidth: { xs: "100%", md: "600px" },
                     mx: { xs: "auto", md: "0" },
@@ -135,9 +130,9 @@ function Hero() {
                     fontWeight: 400,
                   }}
                 >
-                  I&apos;m <strong>Akinyemi Matthew</strong>, a Full-Stack Engineer specializing in building 
-                  high-performance applications with Next.js, TypeScript, 
-                  and robust backend architectures.
+                  Terminal Yard Operating System replaces manual scheduling friction with 
+                  <strong> automated, real-time orchestration</strong>. Optimize spotters, gates, 
+                  and loading docks within a single mission-critical software console.
                 </Typography>
               </motion.div>
 
@@ -153,44 +148,53 @@ function Hero() {
                     variant="contained"
                     size="large"
                     endIcon={<ArrowRight size={20} />}
-                    onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                    className="gradient-primary"
+                    component={Link}
+                    href="/#contact"
                     sx={{
                       px: 5,
                       py: 2,
-                      fontSize: "1rem",
-                      fontWeight: 700,
-                      boxShadow: "0 20px 40px -12px rgba(59, 130, 246, 0.4)",
+                      fontSize: "11px",
+                      fontWeight: 600,
+                      fontFamily: "var(--font-mono)",
+                      bgcolor: "#abff02",
+                      color: "#052424",
+                      borderRadius: "8px",
+                      boxShadow: "none",
+                      cursor: "pointer",
                       "&:hover": {
+                        bgcolor: "#c0ff3b",
+                        boxShadow: "none",
                         transform: "translateY(-2px)",
-                        boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.5)",
                       }
                     }}
                   >
-                    View Projects
+                    Request System Demo
                   </Button>
                   <Button
-                    component="a"
-                    href="/Matthew_Akinyemi_Professional_CV.pdf"
-                    download="Matthew_Akinyemi_Professional_CV.pdf"
+                    component={Link}
+                    href="/resume"
                     variant="outlined"
                     size="large"
-                    startIcon={<Download size={20} />}
+                    startIcon={<Terminal size={20} />}
                     sx={{
                       px: 5,
                       py: 2,
-                      fontSize: "1rem",
+                      fontSize: "11px",
                       fontWeight: 600,
-                      borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
-                      color: isDark ? "white" : "text.primary",
+                      fontFamily: "var(--font-mono)",
+                      borderColor: "#ffffff",
+                      color: "#ffffff",
+                      borderRadius: "8px",
                       backdropFilter: "blur(10px)",
+                      cursor: "pointer",
                       "&:hover": {
-                        borderColor: isDark ? "white" : "primary.main",
-                        bgcolor: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.02)",
+                        borderColor: "#abff02",
+                        color: "#abff02",
+                        bgcolor: "rgba(255,255,255,0.05)",
                       }
                     }}
                   >
-                    Get CV
+                    Integration Specs
                   </Button>
                 </Stack>
               </motion.div>
@@ -201,36 +205,35 @@ function Hero() {
                   direction="row"
                   spacing={2}
                   justifyContent={{ xs: "center", md: "flex-start" }}
-                  sx={{ color: "text.secondary" }}
+                  sx={{ color: "#a2a6b4" }}
                 >
                   {[
-                    { icon: <Globe size={22} />, label: "Health Center", href: "https://mat-oauhc.vercel.app/" },
-                    { icon: <MessageSquare size={22} />, label: "LinkedIn", href: "https://www.linkedin.com/in/matthewakinyemi24/" },
-                    { icon: <Send size={22} />, label: "Twitter", href: "https://twitter.com/Mathew7746" },
-                    { icon: <Phone size={22} />, label: "Call Me", href: "tel:09025546836" },
-                    { icon: <Mail size={22} />, label: "Email", href: "mailto:matthewakinyemi24@gmail.com" },
+                    { icon: <Play size={20} />, label: "Watch OS Preview", href: "/#projects" },
+                    { icon: <Terminal size={20} />, label: "API Console", href: "/resume" },
+                    { icon: <Shield size={20} />, label: "Security & Compliance", href: "/resume#compliance" },
+                    { icon: <Cpu size={20} />, label: "Hardware Compatibility", href: "/resume#hardware" },
+                    { icon: <HelpCircle size={20} />, label: "Technical Support", href: "/#contact" },
                   ].map((social, i) => (
                     <Tooltip key={i} title={social.label} arrow>
                       <IconButton
                         href={social.href}
-                        target="_blank"
                         sx={{
                           color: "inherit",
                           p: 1.5,
                           bgcolor: "rgba(255,255,255,0.03)",
                           border: "1px solid rgba(255,255,255,0.05)",
                           transition: "0.3s",
+                          cursor: "pointer",
                           "&:hover": {
-                            color: "primary.main",
-                            bgcolor: "rgba(59, 130, 246, 0.1)",
-                            borderColor: "primary.main",
+                            color: "#abff02",
+                            bgcolor: "rgba(171, 255, 2, 0.1)",
+                            borderColor: "#abff02",
                             transform: "translateY(-5px)",
                           }
                         }}
                       >
                         {social.icon}
                       </IconButton>
-                    {/* the name name of the girl i met at the event is name oluwatouin akinyemi and he is very handsome and i have successfully added you professoina cv to oyour nextjs portfolio website verified the buld and pusj all the updates to github what was doen is to create dedicated resume pafe developeed a new route with a professional glassmorphic card design populated the pag3e with your full name popoulated  the page with you full details full name role social liks along with a summary your work experience history and core technicall skils used mui icons material such as*/}
                     </Tooltip>
                   ))}
                 </Stack>
@@ -248,7 +251,7 @@ function Hero() {
                 sx={{
                   position: "relative",
                   width: "100%",
-                  aspectRatio: "3/4", // 3:4 Aspect Ratio to display the full portrait image
+                  aspectRatio: "3/4", 
                   maxWidth: "450px",
                   mx: "auto",
                 }}
@@ -261,23 +264,22 @@ function Hero() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    borderRadius: "32px",
+                    borderRadius: "24px",
                     overflow: "hidden",
-                    border: "8px solid",
-                    borderColor: "rgba(255, 255, 255, 0.03)",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
                     boxShadow: "0 40px 80px -20px rgba(0,0,0,0.5)",
                     zIndex: 2,
+                    bgcolor: "#052424",
                   }}
                 >
                   <Box
                     component="img"
-                    src="/portfolioPic_new.jpg"
-                    alt="Akinyemi Matthew"
+                    src="/gate-os.png"
+                    alt="Terminal YOS Gate OS Console"
                     sx={{
                       width: "100%",
                       height: "100%",
                       objectFit: "cover",
-                      filter: "contrast(1.05)",
                     }}
                   />
                 </Box>
@@ -290,9 +292,9 @@ function Hero() {
                     left: "-10%",
                     width: "100%",
                     height: "100%",
-                    bgcolor: "primary.main",
+                    bgcolor: "#abff02",
                     borderRadius: "32px",
-                    opacity: 0.1,
+                    opacity: 0.08,
                     filter: "blur(60px)",
                     zIndex: 1,
                   }}
@@ -302,36 +304,8 @@ function Hero() {
           </Grid>
         </Grid>
       </Container>
-
-      {/* Floating Shapes for Depth */}
-      <Box
-        component={motion.div}
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 10, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        sx={{
-          position: "absolute",
-          top: "15%",
-          right: "10%",
-          width: 150,
-          height: 150,
-          borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
-          background: "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2))",
-          filter: "blur(40px)",
-          zIndex: 0,
-          display: { xs: "none", md: "block" },
-          opacity: isDark ? 1 : 0.5
-        }}
-      />
     </Box>
   );
 }
-;
 
 export default Hero;

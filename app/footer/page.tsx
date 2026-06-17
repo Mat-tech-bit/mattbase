@@ -1,49 +1,20 @@
 "use client";
 import React from "react";
-import { Box, Container, Grid, Typography, Stack, IconButton, Divider, useTheme } from "@mui/material";
-import { Mail, Phone, Globe } from "lucide-react";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { Box, Container, Grid, Typography, Stack, IconButton, Divider } from "@mui/material";
+import { Mail, MapPin } from "lucide-react";
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from "next/link";
 
 const Footer = () => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
-
-  const socialLinks = [
-    {
-      icon: <FacebookIcon fontSize="small" />,
-      url: "https://web.facebook.com/matthew.akinyemi.146",
-      hoverColor: "#1877F2"
-    },
-    {
-      icon: <TwitterIcon fontSize="small" />,
-      url: "https://twitter.com/Mathew7746",
-      hoverColor: "#1DA1F2"
-    },
-    {
-      icon: <InstagramIcon fontSize="small" />,
-      url: "https://www.instagram.com/ak_mat1",
-      hoverColor: "#E4405F"
-    },
-    {
-      icon: <WhatsAppIcon fontSize="small" />,
-      url: "https://wa.link/9tkk8l",
-      hoverColor: "#25D366"
-    }
-  ];
-
   return (
     <Box
       component="footer"
       sx={{
-        bgcolor: "background.default",
+        bgcolor: "#052424", // canvas
         pt: { xs: 8, md: 10 },
         pb: 6,
-        borderTop: "1px solid",
-        borderColor: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.05)",
+        borderTop: "1px solid #586a6a", // hairline
       }}
     >
       <Container maxWidth="lg">
@@ -52,68 +23,88 @@ const Footer = () => {
             <Typography
               variant="h5"
               fontWeight={900}
-              sx={{ mb: 3, textAlign: { xs: "center", md: "left" }, letterSpacing: "-0.03em" }}
+              sx={{ mb: 3, textAlign: { xs: "center", md: "left" }, letterSpacing: "1.5px", fontFamily: "var(--font-mono)", color: "#ffffff" }}
             >
-              AKINYEMI<span style={{ color: "#3b82f6" }}>.</span>
+              TERMINAL<span style={{ color: "#abff02" }}>_</span>
             </Typography>
             <Typography
               variant="body1"
-              color="text.secondary"
               sx={{
                 mb: 4,
                 maxWidth: { xs: "none", md: "300px" },
-                textAlign: { xs: "center", md: "left" }
+                textAlign: { xs: "center", md: "left" },
+                color: "#a2a6b4",
+                lineHeight: 1.6
               }}
             >
-              Building the future of the web with passion and precision. Let's create something extraordinary together.
+              Terminal Yard Operating System (YOS) is the high-performance orchestration platform replacing manual friction with real-time yard automation.
             </Typography>
             <Stack
               direction="row"
               spacing={1.5}
               justifyContent={{ xs: "center", md: "flex-start" }}
             >
-              {socialLinks.map((social, i) => (
-                <IconButton
-                  key={i}
-                  size="small"
-                  onClick={() => window.open(social.url, "_blank")}
-                  sx={{
-                    color: isDark ? "text.primary" : "#4b5563",
-                    bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)",
-                    border: "1px solid",
-                    borderColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)",
-                    transition: "0.3s",
-                    "&:hover": {
-                      color: "white",
-                      bgcolor: social.hoverColor,
-                      borderColor: social.hoverColor,
-                      transform: "translateY(-3px)",
-                    },
-                  }}
-                >
-                  {social.icon}
-                </IconButton>
-              ))}
+              <IconButton
+                size="small"
+                onClick={() => window.open("https://github.com/Mat-tech-bit/mattbase", "_blank")}
+                sx={{
+                  color: "#ffffff",
+                  bgcolor: "rgba(255, 255, 255, 0.03)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  transition: "all 300ms cubic-bezier(0.19, 1, 0.22, 1)",
+                  "&:hover": {
+                    color: "#052424",
+                    bgcolor: "#abff02",
+                    borderColor: "#abff02",
+                    transform: "translateY(-3px)",
+                  },
+                }}
+              >
+                <GitHubIcon fontSize="small" />
+              </IconButton>
+              <IconButton
+                size="small"
+                onClick={() => window.open("https://linkedin.com", "_blank")}
+                sx={{
+                  color: "#ffffff",
+                  bgcolor: "rgba(255, 255, 255, 0.03)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  transition: "all 300ms cubic-bezier(0.19, 1, 0.22, 1)",
+                  "&:hover": {
+                    color: "#052424",
+                    bgcolor: "#abff02",
+                    borderColor: "#abff02",
+                    transform: "translateY(-3px)",
+                  },
+                }}
+              >
+                <LinkedInIcon fontSize="small" />
+              </IconButton>
             </Stack>
           </Grid>
 
           <Grid size={{ xs: 6, md: 2 }}>
-            <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 3 }}>
-              Quick Links
+            <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 3, color: "#ffffff" }}>
+              System links
             </Typography>
             <Stack spacing={2}>
-              {["Home", "About", "Projects", "Contact"].map((item) => (
+              {[
+                { name: "Platform", href: "/#about-story" },
+                { name: "Capabilities", href: "/#skills" },
+                { name: "Solutions", href: "/#portfolio" },
+                { name: "Consoles", href: "/#projects" },
+                { name: "SLA Specs", href: "/resume" },
+              ].map((item) => (
                 <Link
-                  key={item}
-                  href={`/#${item.toLowerCase()}`}
+                  key={item.name}
+                  href={item.href}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <Typography
                     variant="body2"
-                    color="text.secondary"
-                    sx={{ "&:hover": { color: "primary.main" }, transition: "0.2s" }}
+                    sx={{ "&:hover": { color: "#abff02" }, transition: "0.2s", color: "#a2a6b4" }}
                   >
-                    {item}
+                    {item.name}
                   </Typography>
                 </Link>
               ))}
@@ -121,13 +112,13 @@ const Footer = () => {
           </Grid>
 
           <Grid size={{ xs: 6, md: 3 }}>
-            <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 3 }}>
-              Services
+            <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 3, color: "#ffffff" }}>
+              Core Solutions
             </Typography>
             <Stack spacing={2}>
-              {["Web Development", "UI/UX Design", "SEO Optimization", "Mobile Solutions"].map(
+              {["Automated Gate OS", "Spotter Dispatch", "Dock Door Scheduling", "Telemetry Reefer Alerts"].map(
                 (item) => (
-                  <Typography key={item} variant="body2" color="text.secondary">
+                  <Typography key={item} variant="body2" sx={{ color: "#a2a6b4" }}>
                     {item}
                   </Typography>
                 )
@@ -136,27 +127,27 @@ const Footer = () => {
           </Grid>
 
           <Grid size={{ xs: 12, md: 3 }}>
-            <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 3 }}>
-              Contact Info
+            <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 3, color: "#ffffff" }}>
+              Contact Details
             </Typography>
             <Stack spacing={2.5}>
               <Box sx={{ display: "flex", gap: 1.5, alignItems: "center" }}>
-                <Mail size={18} color="#3b82f6" />
-                <Typography variant="body2" color="text.secondary">
-                  matthewakinyemi24@gmail.com
+                <Mail size={18} color="#abff02" />
+                <Typography variant="body2" sx={{ color: "#a2a6b4" }}>
+                  ops@terminalindustries.com
                 </Typography>
               </Box>
               <Box sx={{ display: "flex", gap: 1.5, alignItems: "center" }}>
-                <Phone size={18} color="#3b82f6" />
-                <Typography variant="body2" color="text.secondary">
-                  09025546836
+                <MapPin size={18} color="#abff02" />
+                <Typography variant="body2" sx={{ color: "#a2a6b4" }}>
+                  Dallas Supply Chain Hub, TX
                 </Typography>
               </Box>
             </Stack>
           </Grid>
         </Grid>
 
-        <Divider sx={{ borderColor: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.05)", mb: 4 }} />
+        <Divider sx={{ borderColor: "rgba(255, 255, 255, 0.05)", mb: 4 }} />
 
         <Box
           sx={{
@@ -167,11 +158,11 @@ const Footer = () => {
             gap: 2,
           }}
         >
-          <Typography variant="body2" color="text.secondary" sx={{ textAlign: "center" }}>
-            © {new Date().getFullYear()} Akinyemi. All rights reserved.
+          <Typography variant="body2" sx={{ textAlign: "center", color: "#a2a6b4" }}>
+            © {new Date().getFullYear()} Terminal Industries. All rights reserved.
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Built with Next.js & MUI
+          <Typography variant="body2" sx={{ color: "#a2a6b4" }}>
+            Yard Operating System Console v2.4
           </Typography>
         </Box>
       </Container>
@@ -180,3 +171,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

@@ -5,17 +5,16 @@ import {
   Typography,
   TextField,
   Button,
-  Grid,
   Paper,
   Container,
   Stack,
   IconButton,
-  useTheme,
+  Grid,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Globe, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ShieldCheck, Terminal } from "lucide-react";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 type FormData = {
   name: string;
@@ -29,8 +28,6 @@ export default function Contact() {
     email: "",
     message: "",
   });
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,15 +38,15 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    alert("Message sent successfully!");
+    console.log("Demo Request Submitted:", formData);
+    alert("Demo request sent successfully! An operations engineer will contact you shortly.");
     setFormData({ name: "", email: "", message: "" });
   };
 
   const contactInfo = [
-    { icon: <Mail size={24} />, label: "Email", value: "matthewakinyemi24@gmail.com" },
-    { icon: <Phone size={24} />, label: "Phone", value: "09025546836" },
-    { icon: <MapPin size={24} />, label: "Location", value: "Lagos, Nigeria" },
+    { icon: <Mail size={24} />, label: "Sales & Operations", value: "ops@terminalindustries.com" },
+    { icon: <Phone size={24} />, label: "Integration Hotline", value: "+1 (800) 555-YARD" },
+    { icon: <MapPin size={24} />, label: "Operations Center", value: "Dallas Supply Chain Hub, TX" },
   ];
 
   return (
@@ -68,14 +65,15 @@ export default function Contact() {
             textAlign: "center",
             fontSize: { xs: "3rem", md: "4.5rem" },
             letterSpacing: "-0.04em",
+            color: "#ffffff"
           }}
         >
-          Let&apos;s <span style={{ color: "#3b82f6" }}>Collaborate</span>
+          Schedule a <span style={{ color: "#abff02" }}>System Demo</span>
         </Typography>
         <Typography
           variant="h6"
           sx={{
-            color: "text.secondary",
+            color: "#a2a6b4",
             textAlign: "center",
             mb: 10,
             maxWidth: "600px",
@@ -84,8 +82,7 @@ export default function Contact() {
             lineHeight: 1.6,
           }}
         >
-          Whether you have a startup idea, a complex engineering challenge, 
-          or just want to talk shop, my inbox is always open.
+          Learn how Terminal Yard Operating System can eliminate manual bottlenecks, optimize shunter dispatching, and streamline gates.
         </Typography>
       </motion.div>
 
@@ -106,20 +103,19 @@ export default function Contact() {
                     sx={{
                       p: 2,
                       borderRadius: "16px",
-                      bgcolor: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)",
-                      color: "primary.main",
+                      bgcolor: "rgba(171, 255, 2, 0.1)",
+                      color: "#abff02",
                       display: "flex",
-                      border: "1px solid",
-                      borderColor: isDark ? "rgba(59, 130, 246, 0.2)" : "rgba(59, 130, 246, 0.1)",
+                      border: "1px solid rgba(171, 255, 2, 0.2)",
                     }}
                   >
                     {info.icon}
                   </Box>
                   <Box>
-                    <Typography variant="overline" color="primary" sx={{ fontWeight: 800, letterSpacing: 1.5 }}>
+                    <Typography variant="overline" sx={{ fontWeight: 800, letterSpacing: 1.5, color: "#abff02", fontFamily: "var(--font-mono)", fontSize: "10px" }}>
                       {info.label}
                     </Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 700, color: "#ffffff" }}>
                       {info.value}
                     </Typography>
                   </Box>
@@ -128,36 +124,38 @@ export default function Contact() {
             ))}
 
             <Box sx={{ pt: 4 }}>
-              <Typography variant="h6" sx={{ fontWeight: 800, mb: 3 }}>
-                Digital Presence
+              <Typography variant="h6" sx={{ fontWeight: 800, mb: 3, color: "#ffffff", fontFamily: "var(--font-mono)", fontSize: "14px", letterSpacing: "1px", textTransform: "uppercase" }}>
+                API & Source Access
               </Typography>
               <Stack direction="row" spacing={2}>
                 {[
-                  { Icon: Globe, isLucide: true },
-                  { Icon: MessageSquare, isLucide: true },
-                  { Icon: TwitterIcon, isLucide: false },
-                  { Icon: LinkedInIcon, isLucide: false }
+                  { Icon: Terminal, label: "API Console", href: "/resume" },
+                  { Icon: ShieldCheck, label: "SLA Specs", href: "/resume#sla" },
+                  { Icon: GitHubIcon, label: "GitHub", href: "https://github.com/Mat-tech-bit/mattbase", isMui: true },
+                  { Icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com", isMui: true }
                 ].map((item, i) => (
                   <IconButton
                     key={i}
+                    href={item.href}
                     sx={{
                       p: 1.5,
-                      bgcolor: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.03)",
-                      border: "1px solid",
-                      borderColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)",
+                      bgcolor: "rgba(255, 255, 255, 0.03)",
+                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      color: "#ffffff",
                       transition: "0.3s",
+                      cursor: "pointer",
                       "&:hover": {
-                        bgcolor: "primary.main",
-                        color: "white",
-                        borderColor: "primary.main",
+                        bgcolor: "#abff02",
+                        color: "#052424",
+                        borderColor: "#abff02",
                         transform: "translateY(-5px)",
                       },
                     }}
                   >
-                    {item.isLucide ? (
-                      <item.Icon size={22} />
-                    ) : (
+                    {item.isMui ? (
                       <item.Icon sx={{ fontSize: 22 }} />
+                    ) : (
+                      <item.Icon size={22} />
                     )}
                   </IconButton>
                 ))}
@@ -179,9 +177,8 @@ export default function Contact() {
               sx={{ 
                 p: { xs: 4, md: 6 },
                 borderRadius: 4,
-                bgcolor: isDark ? "rgba(255, 255, 255, 0.02)" : "#fff",
-                border: "1px solid",
-                borderColor: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)",
+                bgcolor: "rgba(255, 255, 255, 0.01)",
+                border: "1px solid rgba(88, 106, 106, 0.2)",
               }}
             >
               <form onSubmit={handleSubmit}>
@@ -189,34 +186,46 @@ export default function Contact() {
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <TextField
                       fullWidth
-                      label="Your Name"
+                      label="Contact Name"
                       name="name"
                       variant="filled"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      sx={{ bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", borderRadius: 1 }}
+                      sx={{ 
+                        bgcolor: "rgba(255,255,255,0.02)", 
+                        borderRadius: 1,
+                        "& .MuiInputLabel-root": { color: "#a2a6b4" },
+                        "& .MuiInputLabel-root.Mui-focused": { color: "#abff02" },
+                        "& .MuiFilledInput-root": { color: "#ffffff" },
+                      }}
                       slotProps={{ input: { disableUnderline: true } }}
                     />
                   </Grid>
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <TextField
                       fullWidth
-                      label="Your Email"
+                      label="Corporate Email"
                       name="email"
                       type="email"
                       variant="filled"
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      sx={{ bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", borderRadius: 1 }}
+                      sx={{ 
+                        bgcolor: "rgba(255,255,255,0.02)", 
+                        borderRadius: 1,
+                        "& .MuiInputLabel-root": { color: "#a2a6b4" },
+                        "& .MuiInputLabel-root.Mui-focused": { color: "#abff02" },
+                        "& .MuiFilledInput-root": { color: "#ffffff" },
+                      }}
                       slotProps={{ input: { disableUnderline: true } }}
                     />
                   </Grid>
                   <Grid size={{ xs: 12 }}>
                     <TextField
                       fullWidth
-                      label="Your Message"
+                      label="Terminal Specs & Requirements (e.g. Yard size, gate volume)"
                       name="message"
                       multiline
                       rows={5}
@@ -224,7 +233,13 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      sx={{ bgcolor: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", borderRadius: 1 }}
+                      sx={{ 
+                        bgcolor: "rgba(255,255,255,0.02)", 
+                        borderRadius: 1,
+                        "& .MuiInputLabel-root": { color: "#a2a6b4" },
+                        "& .MuiInputLabel-root.Mui-focused": { color: "#abff02" },
+                        "& .MuiFilledInput-root": { color: "#ffffff" },
+                      }}
                       slotProps={{ input: { disableUnderline: true } }}
                     />
                   </Grid>
@@ -235,15 +250,24 @@ export default function Contact() {
                       size="large"
                       fullWidth
                       endIcon={<Send size={20} />}
-                      className="gradient-primary"
                       sx={{ 
                         py: 2, 
-                        fontSize: "1.1rem", 
-                        fontWeight: 700,
-                        boxShadow: "0 15px 30px -10px rgba(59, 130, 246, 0.5)"
+                        fontSize: "11px", 
+                        fontWeight: 600,
+                        fontFamily: "var(--font-mono)",
+                        letterSpacing: "1.5px",
+                        bgcolor: "#abff02",
+                        color: "#052424",
+                        borderRadius: "8px",
+                        boxShadow: "none",
+                        cursor: "pointer",
+                        "&:hover": {
+                          bgcolor: "#c0ff3b",
+                          boxShadow: "none",
+                        }
                       }}
                     >
-                      Send Message
+                      Submit Demo Request
                     </Button>
                   </Grid>
                 </Grid>

@@ -6,12 +6,18 @@ import { ThemeToggleProvider } from "./theme";
 import Navbar from "./navbar/page";
 import Footer from "./footer/page";
 
-import { Inter } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
 });
 
 export const viewport: Viewport = {
@@ -21,15 +27,15 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Matthew Akinyemi | Software Engineer & Designer",
-  description: "Portfolio of Matthew Akinyemi, a Software Engineer specializing in building high-performance, visually stunning web applications with modern technologies.",
-  keywords: ["Software Engineer", "Frontend Developer", "React", "Next.js", "TypeScript", "Portfolio"],
-  authors: [{ name: "Matthew Akinyemi" }],
+  title: "Terminal Yard Operating System | The New Industry Standard in Yard Operations",
+  description: "Terminal Yard Operating System (YOS) is the high-performance orchestration platform replacing manual friction with real-time yard automation. Optimize spotters, gates, and assets in a single mission-critical console.",
+  keywords: ["Logistics", "Yard Management", "YMS", "Terminal Industries", "Yard Operating System", "Supply Chain Automation", "Dock Orchestration", "Fleet Telemetry"],
+  authors: [{ name: "Terminal Industries" }],
   openGraph: {
-    title: "Matthew Akinyemi | Software Engineer",
-    description: "Building the future of the web with precision and style.",
-    url: "https://matthewakinyemi.dev",
-    siteName: "Matthew Akinyemi Portfolio",
+    title: "Terminal Yard Operating System | Yard Operations Platform",
+    description: "The New Industry Standard in Yard Operations. Automate and orchestrate gates, spotters, and dock doors.",
+    url: "https://terminalindustries.com",
+    siteName: "Terminal Yard Operating System",
     locale: "en_US",
     type: "website",
   },
@@ -42,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" style={{ scrollBehavior: 'smooth' }}>
-      <body className={inter.variable}>
+      <body className={`${inter.variable} ${geistMono.variable}`}>
         <AppRouterCacheProvider>
           <ThemeToggleProvider>
             <div style={{ overflowX: "hidden", width: "100%", position: "relative" }}>
@@ -56,3 +62,4 @@ export default function RootLayout({
     </html>
   );
 }
+

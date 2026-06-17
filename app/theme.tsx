@@ -5,9 +5,7 @@ import {
   ThemeProvider,
   createTheme,
   CssBaseline,
-  IconButton,
 } from "@mui/material"
-import { DarkMode, LightMode } from "@mui/icons-material"
 
 const ThemeModeContext = createContext({
   darkMode: true,
@@ -15,58 +13,81 @@ const ThemeModeContext = createContext({
 })
 
 export function ThemeToggleProvider({ children }: { children: React.ReactNode }) {
-  const [darkMode, setDarkMode] = useState(true)
+  // Lock to dark mode
+  const darkMode = true
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light')
-  }, [darkMode])
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }, [])
 
-  const toggleTheme = () => setDarkMode((prev) => !prev)
+  const toggleTheme = () => {}
 
   const theme = useMemo(() => createTheme({
     palette: {
-      mode: darkMode ? "dark" : "light",
+      mode: "dark",
       primary: {
-        main: "#3b82f6",
-        light: "#60a5fa",
-        dark: "#2563eb",
+        main: "#abff02",      // primary lime
+        light: "#c0ff3b",     // primary-bright
+        dark: "#98e602",      // primary-deep
+        contrastText: "#052424", // on-primary
       },
       secondary: {
-        main: "#10b981",
+        main: "#ffffff",
       },
       background: {
-        default: darkMode ? "#050505" : "#f8fafc",
-        paper: darkMode ? "#0f0f0f" : "#ffffff",
+        default: "#052424",   // canvas
+        paper: "#052424",     // B2B cards sit on canvas
       },
       text: {
-        primary: darkMode ? "#f8fafc" : "#0f172a",
-        secondary: darkMode ? "#94a3b8" : "#475569",
+        primary: "#ffffff",   // ink
+        secondary: "#a2a6b4", // ink-soft
       },
+      divider: "#586a6a",     // hairline
     },
     typography: {
       fontFamily: "var(--font-inter)",
-      h1: { fontWeight: 800, letterSpacing: "-0.02em" },
-      h2: { fontWeight: 700, letterSpacing: "-0.01em" },
-      h3: { fontWeight: 700 },
-      h4: { fontWeight: 600 },
-      button: { textTransform: "none", fontWeight: 600 },
+      h1: { fontFamily: "var(--font-inter)", fontWeight: 500, letterSpacing: "-0.04em" },
+      h2: { fontFamily: "var(--font-inter)", fontWeight: 500, letterSpacing: "-0.03em" },
+      h3: { fontFamily: "var(--font-inter)", fontWeight: 500, letterSpacing: "-0.02em" },
+      h4: { fontFamily: "var(--font-inter)", fontWeight: 500 },
+      h5: { fontFamily: "var(--font-inter)", fontWeight: 400 },
+      h6: { fontFamily: "var(--font-inter)", fontWeight: 400 },
+      button: { 
+        fontFamily: "var(--font-mono)", 
+        fontSize: "11px", 
+        fontWeight: 600, 
+        letterSpacing: "1.5px", 
+        textTransform: "uppercase" 
+      },
     },
     shape: {
-      borderRadius: 16,
+      borderRadius: 8, // rounded.md (8px) for buttons, input fields
     },
     components: {
       MuiButton: {
         styleOverrides: {
           root: {
-            borderRadius: "12px",
-            padding: "10px 24px",
-            fontSize: "1rem",
+            borderRadius: "8px", // rounded.md is 8px
+            padding: "12px 24px", // spacing.sm spacing.xl
+            cursor: "pointer",
+            transition: "color 300ms cubic-bezier(0, 0, 0.58, 1), background-color 300ms cubic-bezier(0, 0, 0.58, 1)",
           },
           containedPrimary: {
-            background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
-            boxShadow: "0 4px 14px 0 rgba(59, 130, 246, 0.39)",
+            backgroundColor: "#abff02",
+            color: "#052424",
+            boxShadow: "none",
             "&:hover": {
-              boxShadow: "0 6px 20px rgba(59, 130, 246, 0.23)",
+              backgroundColor: "#c0ff3b",
+              boxShadow: "none",
+            },
+          },
+          outlinedPrimary: {
+            backgroundColor: "transparent",
+            color: "#ffffff",
+            border: "1px solid #ffffff",
+            "&:hover": {
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              border: "1px solid #ffffff",
             },
           },
         },
@@ -74,15 +95,15 @@ export function ThemeToggleProvider({ children }: { children: React.ReactNode })
       MuiCard: {
         styleOverrides: {
           root: {
-            backgroundColor: darkMode ? "rgba(15, 15, 15, 0.6)" : "rgba(255, 255, 255, 0.8)",
-            backdropFilter: "blur(20px)",
-            border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)"}`,
-            boxShadow: darkMode ? "0 8px 32px 0 rgba(0, 0, 0, 0.37)" : "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+            backgroundColor: "#052424",
+            border: "1px solid #586a6a",
+            borderRadius: "12px", // rounded.lg is 12px
+            boxShadow: "none", // flat content cards
           },
         },
       },
     },
-  }), [darkMode])
+  }), [])
 
   return (
     <ThemeModeContext.Provider value={{ darkMode, toggleTheme }}>
@@ -97,24 +118,8 @@ export function ThemeToggleProvider({ children }: { children: React.ReactNode })
 export const useThemeMode = () => useContext(ThemeModeContext)
 
 export function ThemeToggleButton() {
-  const { darkMode, toggleTheme } = useThemeMode()
-  return (
-    <IconButton 
-      onClick={toggleTheme}
-      sx={{ 
-        bgcolor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.05)",
-        border: "1px solid",
-        borderColor: darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
-        color: darkMode ? "#fbbf24" : "#4b5563",
-        "&:hover": {
-          bgcolor: darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
-          transform: "rotate(15deg)",
-        },
-        transition: "all 0.3s ease",
-      }}
-    >
-      {darkMode ? <LightMode sx={{ fontSize: 20 }} /> : <DarkMode sx={{ fontSize: 20 }} />}
-    </IconButton>
-  )
+  // Return null as we are locking the site to a high-end dark logistics console
+  return null
 }
+
 

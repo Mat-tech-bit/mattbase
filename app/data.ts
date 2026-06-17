@@ -12,83 +12,52 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  
-  
   {
-    title: "Naija Creative Hub",
-    description: "A professional showcase platform for Nigerian creatives to exhibit portfolios and connect with global opportunities.",
-    image: "/naijacreative.png",
-    tech: ["Next.js", "Firebase", "Framer Motion", "Tailwind CSS"],
-    github: "https://github.com/Mat-tech-bit",
-    live: "https://naija-creative-hub.vercel.app/",
-    category: "Community",
-    problem: "Nigerian creatives struggled with fragmented platforms that didn't properly highlight their cultural and professional depth.",
-    solution: "Built a high-performance, visually stunning hub with categorized galleries and optimized asset delivery.",
-    impact: "Facilitated over 200+ professional connections in the first month of beta launch."
+    title: "Gate Operations OS Console",
+    description: "Live management of inbound and outbound yard traffic with OCR optical recognition, driver check-in kiosks, and automatic security logs.",
+    image: "/gate-os.png",
+    tech: ["Websockets Sync", "OCR Vision Models", "Next.js Console", "Node.js REST API"],
+    github: "https://github.com/Mat-tech-bit/mattbase",
+    live: "/#contact",
+    category: "Gate & Safety",
+    problem: "Traditional logistics yards experience severe pre-gate congestion, long driver check-in times (up to 45 mins), and error-prone manual logs.",
+    solution: "Deployed OCR license and trailer scanners alongside automated gate control loops and self-service kiosks.",
+    impact: "Reduced gate check-in time by 90% (from 45 minutes to under 2 minutes) and digitized security checklists."
   },
-  
-{
-    title: "OAU Health Center",
-    description: "A comprehensive healthcare management system for the Obafemi Awolowo University Health Center.",
-    image: "/healthcenter.png",
-    tech: ["Next.js", "TypeScript", "Node.js", "Express", "MongoDB"],
-    github: "https://github.com/Mat-tech-bit",
-    live: "https://mat-oauhc.vercel.app/",
-    category: "HealthTech",
-    problem: "The health center faced challenges with manual record keeping, inefficient appointment scheduling, and fragmented patient data management.",
-    solution: "Developed a secure, centralized portal for electronic health records, automated scheduling, and real-time administrative dashboards.",
-    impact: "Streamlined patient throughput by 40% and eliminated paper-based errors across major departments."
-  },
- 
   {
-    title: "Novacrest University Website",
-    description: "A modern, highly responsive academic portal offering seamless navigation, course galleries, and campus information.",
-    image: "/novacrest.png",
-    tech: ["Next.js", "TypeScript", "Firebase", "Cloudinary", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/Mat-tech-bit",
-    live: "https://novacrest-ebon.vercel.app/",
-    category: "Education",
-    problem: "Prospective students and campus visitors faced slow access to academic announcements and fragmented department portals.",
-    solution: "Designed a centralized academic platform integrating dynamic media delivery and Firebase-driven content registries.",
-    impact: "Improved site accessibility, reduced visual layout shifts, and streamlined student outreach efficiency."
+    title: "Spotter Fleet Orchestrator",
+    description: "Algorithmic routing and automatic dispatching system for spotter trucks. Streamlines shuttle trailer assignments in real-time.",
+    image: "/spotter-fleet.png",
+    tech: ["A* Path Optimization", "MQTT Broker", "React Rugged UI", "Drizzle ORM & Postgres"],
+    github: "https://github.com/Mat-tech-bit/mattbase",
+    live: "/#contact",
+    category: "Orchestration",
+    problem: "Spotters waste significant fuel, mileage, and active duty hours running empty trailers due to fragmented radio and paper dispatch dispatching.",
+    solution: "Engineered a real-time auto-assignment engine that dispatches spotters to nearby trailers based on door urgency.",
+    impact: "Boosted spotter hourly trailer moves by 35% and reduced overall yard fuel consumption by 15%."
   },
-
-   {
-    title: "Veloura Restaurant",
-    description: "An elegant dining presentation portal incorporating custom digital menus, tables booking, and order dashboards.",
-    image: "/veloura.png",
-    tech: ["Next.js", "TypeScript", "Drizzle ORM", "PostgreSQL", "Better Auth", "Material UI", "Tailwind CSS"],
-    github: "https://github.com/Mat-tech-bit",
-    live: "https://veloura-seven-eta.vercel.app/",
-    category: "Hospitality",
-    problem: "A lack of integrated reservation systems led to double bookings and high manual overhead for site administrators.",
-    solution: "Developed a secure Postgres-backed reservation engine using Drizzle ORM and Better Auth for admin dashboard security.",
-    impact: "Enhanced booking reliability and automated the reservation scheduling pipeline with clear dashboard reporting."
-  },
-
   {
-    title: "Haven Nest Properties",
-    description: "A premium real estate discovery platform featuring fluid animations, advanced filtering, and instant inquiries.",
-    image: "/haven-nest.png",
-    tech: ["Next.js", "TypeScript", "Firebase", "Material UI", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/Mat-tech-bit",
-    live: "https://haven-nest-properties.vercel.app/",
-    category: "Real Estate",
-    problem: "Traditional listing platforms lacked responsive layouts and direct, real-time channels for client inquiries.",
-    solution: "Created an immersive properties search engine with automated contact channels and Material UI dynamic styling.",
-    impact: "Boosted client interaction rates and reduced property search latency for prospective tenants."
+    title: "Dock Door Smart Planner",
+    description: "Gantt timeline planner that coordinates inbound trailers with warehouse door availability, matching carrier priorities and unloading times.",
+    image: "/dock-door.png",
+    tech: ["Timeline Scheduler", "ETA Forecasting", "TypeScript Engine", "Tailwind CSS"],
+    github: "https://github.com/Mat-tech-bit/mattbase",
+    live: "/#contact",
+    category: "Orchestration",
+    problem: "Misalignment between inbound carriers, cargo priorities, and warehouse loading docks results in massive demurrage fees and container delays.",
+    solution: "Implemented an automated door assignment grid that prioritizes trailers by hot-SKUs and schedules unload teams.",
+    impact: "Decreased dock turnaround time by 22% and eliminated warehouse dwell fee penalties entirely."
   },
- 
   {
-    title: "Audiophile E-commerce",
-    description: "Premium high-fidelity audio equipment store featuring high-performance checkout and seamless payment flows.",
-    image: "/audiophile.png",
-    tech: ["React", "TypeScript", "Redux", "Paystack API", "Tailwind CSS"],
-    github: "https://github.com/Mat-tech-bit",
-    live: "https://mat-audiophile-b4gb.vercel.app/",
-    category: "E-commerce",
-    problem: "Existing solutions lacked a polished user experience for high-ticket audio equipment and robust payment verification.",
-    solution: "Engineered a custom shopping core with deep Paystack integration for secure, instant transaction processing.",
-    impact: "Achieved a 95% checkout success rate and provided a premium shopping experience for creative professionals."
-  },
+    title: "Asset Telemetry Reefers Monitor",
+    description: "Continuous IoT sensor network monitoring refrigerated trailer positions, fuel levels, door openings, and cooling telemetry.",
+    image: "/reefer-telemetry.png",
+    tech: ["IoT MQTT Feeds", "TimescaleDB", "Framer Motion Gauges", "Better Auth Control"],
+    github: "https://github.com/Mat-tech-bit/mattbase",
+    live: "/#contact",
+    category: "Sensors & API",
+    problem: "Cold chain logistics hubs lack remote warning alerts for refrigerated trailer power outages or temperature spikes, leading to cargo spoilage.",
+    solution: "Connected custom yard IoT sensors to our MQTT server to continuously log reefer health statistics and trigger auto-alerts.",
+    impact: "Achieved a 100% reduction in perishable food wastage and automated historical temperature auditing."
+  }
 ];

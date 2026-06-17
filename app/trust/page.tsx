@@ -4,40 +4,36 @@ import {
   Box,
   Container,
   Typography,
-  Grid,
   Card,
   Avatar,
   Stack,
-  useTheme,
+  Grid,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Dr. Adebayo",
-    role: "Health Center Administrator",
-    content: "Akinyemi transformed our administrative workflow. The health center portal is intuitive, lightning-fast, and has completely neutralized our record-keeping issues.",
-    avatar: "/testimonial1.jpg"
+    name: "Marcus Vance",
+    role: "VP of Logistics, Global Retailer",
+    content: "Terminal YOS has completely automated our gate check-in loops. Our driver wait times went from 45 minutes to under 2 minutes, and gate logs are 100% digitized.",
+    avatar: "M"
   },
   {
-    name: "Sarah Chen",
-    role: "Startup Founder",
-    content: "The most technical yet design-conscious developer I've worked with. He doesn't just build features; he builds products that users actually love.",
-    avatar: "/testimonial2.jpg"
+    name: "Helena Rostova",
+    role: "Director of Supply Chain Technology",
+    content: "The API integrations were seamless. We hooked Terminal YOS into our Manhattan WMS in less than a week, and our spotters love the simple, rugged vehicle tablet interface.",
+    avatar: "H"
   },
   {
-    name: "John Miller",
-    role: "E-Commerce Manager",
-    content: "His integration of Paystack was flawless. Transactions are handled with such precision that our support tickets related to payments dropped to zero.",
-    avatar: "/testimonial3.jpg"
+    name: "David Kim",
+    role: "Terminal Operations Manager, Port of Houston Gate 4",
+    content: "Orchestrating 1,200 trailer shunts daily with zero spotter collision incidents and perfect dock door synchronization. Outstanding SLA reliability.",
+    avatar: "D"
   },
 ];
 
 const TrustSection = () => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
-
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 10, md: 15 } }} id="trust">
       <motion.div
@@ -53,15 +49,16 @@ const TrustSection = () => {
             mb: 2,
             textAlign: "center",
             fontSize: { xs: "2.5rem", md: "3.5rem" },
-            letterSpacing: "-0.02em"
+            letterSpacing: "-0.02em",
+            color: "#ffffff"
           }}
         >
-          Built on <span style={{ color: "#3b82f6" }}>Trust</span>
+          Enterprise <span style={{ color: "#abff02" }}>Trust</span>
         </Typography>
         <Typography
           variant="h6"
           sx={{
-            color: "text.secondary",
+            color: "#a2a6b4",
             textAlign: "center",
             mb: 10,
             maxWidth: "600px",
@@ -69,8 +66,7 @@ const TrustSection = () => {
             fontWeight: 400,
           }}
         >
-          Words from collaborators and clients who have seen the impact 
-          of production-grade engineering.
+          Coordinating missions-critical yard operations for terminal networks and global distribution centers.
         </Typography>
       </motion.div>
 
@@ -87,10 +83,10 @@ const TrustSection = () => {
                 sx={{
                   p: 4,
                   height: "100%",
-                  bgcolor: isDark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.8)",
-                  border: "1px solid",
-                  borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
-                  position: "relative"
+                  bgcolor: "rgba(255, 255, 255, 0.01)",
+                  border: "1px solid rgba(88, 106, 106, 0.2)",
+                  position: "relative",
+                  boxShadow: "none"
                 }}
               >
                 <Quote 
@@ -100,17 +96,17 @@ const TrustSection = () => {
                     top: 20, 
                     right: 20, 
                     opacity: 0.05, 
-                    color: theme.palette.primary.main 
+                    color: "#abff02" 
                   }} 
                 />
-                <Typography variant="body1" sx={{ color: "text.secondary", mb: 4, lineHeight: 1.8, fontStyle: "italic" }}>
+                <Typography variant="body1" sx={{ color: "#a2a6b4", mb: 4, lineHeight: 1.8, fontStyle: "italic", fontSize: "0.95rem" }}>
                   &quot;{testi.content}&quot;
                 </Typography>
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <Avatar sx={{ bgcolor: "primary.main", fontWeight: 700 }}>{testi.name[0]}</Avatar>
+                  <Avatar sx={{ bgcolor: "#abff02", color: "#052424", fontWeight: 700, fontFamily: "var(--font-mono)", fontSize: "14px" }}>{testi.avatar}</Avatar>
                   <Box>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 800 }}>{testi.name}</Typography>
-                    <Typography variant="body2" sx={{ color: "text.secondary" }}>{testi.role}</Typography>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 800, color: "#ffffff" }}>{testi.name}</Typography>
+                    <Typography variant="body2" sx={{ color: "#a2a6b4" }}>{testi.role}</Typography>
                   </Box>
                 </Stack>
               </Card>
@@ -127,29 +123,29 @@ const TrustSection = () => {
         viewport={{ once: true }}
         sx={{
           p: 6,
-          borderRadius: 4,
-          bgcolor: isDark ? "rgba(255,255,255,0.01)" : "rgba(0,0,0,0.01)",
-          border: "1px dashed",
-          borderColor: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+          borderRadius: 3,
+          bgcolor: "rgba(255, 255, 255, 0.01)",
+          border: "1px dashed rgba(88, 106, 106, 0.3)",
           textAlign: "center"
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>Current Focus</Typography>
-        <Typography variant="body1" sx={{ color: "text.secondary", mb: 4 }}>
-          Scaling distributed systems and exploring advanced LLM integrations for productivity tools.
+        <Typography variant="h5" sx={{ fontWeight: 800, mb: 2, color: "#ffffff", fontFamily: "var(--font-mono)", fontSize: "16px", letterSpacing: "1px", textTransform: "uppercase" }}>System Telemetry & Health</Typography>
+        <Typography variant="body1" sx={{ color: "#a2a6b4", mb: 4 }}>
+          Live API heartbeat logs and fleet utilization stats aggregated across all shipping terminals.
         </Typography>
         <Stack direction="row" spacing={1} justifyContent="center" flexWrap="wrap" gap={1}>
-          {["Building Distributed Systems", "Learning Rust", "Optimizing React performance"].map((tag) => (
+          {["API Uptime: 99.99%", "Gate Check: <90 seconds", "Spotter Efficiency: +35%", "Average API Latency: 32ms"].map((tag) => (
             <Box
               key={tag}
               sx={{
                 px: 2,
                 py: 0.5,
                 borderRadius: "100px",
-                bgcolor: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)",
-                color: "primary.main",
+                bgcolor: "rgba(171, 255, 2, 0.1)",
+                color: "#abff02",
                 fontSize: "0.8rem",
-                fontWeight: 700
+                fontWeight: 700,
+                fontFamily: "var(--font-mono)"
               }}
             >
               {tag}

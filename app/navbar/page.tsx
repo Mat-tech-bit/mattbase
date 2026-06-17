@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import {
   AppBar,
-  Avatar,
   Box,
   Button,
   Container,
@@ -14,20 +13,17 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  useScrollTrigger,
 } from "@mui/material";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { ThemeToggleButton } from "../theme";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about-story" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Portfolio", href: "/#portfolio" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Resume", href: "/resume" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Platform", href: "/#about-story" },
+  { label: "Capabilities", href: "/#skills" },
+  { label: "Solutions", href: "/#portfolio" },
+  { label: "Consoles", href: "/#projects" },
+  { label: "Specifications", href: "/resume" },
 ];
 
 const Navbar = () => {
@@ -53,16 +49,13 @@ const Navbar = () => {
         elevation={0}
         sx={{
           backgroundColor: scrolled 
-            ? (theme) => theme.palette.mode === 'dark' 
-              ? "rgba(10, 10, 10, 0.7)" 
-              : "rgba(255, 255, 255, 0.8)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          borderBottom: (theme) => scrolled 
-            ? `1px solid ${theme.palette.mode === 'dark' ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)"}`
-            : "none",
-          color: "text.primary",
-          transition: "all 0.3s ease-in-out",
+            ? "rgba(69, 71, 66, 0.8)" 
+            : "rgba(5, 36, 36, 0.6)",
+          backdropFilter: "blur(10px)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          boxShadow: scrolled ? "0 40px 80px rgba(0, 0, 0, 0.25)" : "none",
+          color: "#ffffff",
+          transition: "all 300ms cubic-bezier(0, 0, 0.58, 1)",
           top: 0,
           left: 0,
           right: 0,
@@ -70,22 +63,24 @@ const Navbar = () => {
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters sx={{ justifyContent: "space-between", height: 80 }}>
-            {/* Logo */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-              <Avatar 
-                alt="Matthew" 
-                src="/portfolioPic_new.jpg" 
-                sx={{ width: 40, height: 40, border: "2px solid #3b82f6" }}
-              />
+            {/* Brand Logo */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <Typography
                 variant="h6"
+                component={Link}
+                href="/"
                 sx={{
-                  fontWeight: 800,
-                  letterSpacing: -0.5,
-                  display: { xs: "none", sm: "block" },
+                  fontWeight: 900,
+                  fontSize: "1.3rem",
+                  letterSpacing: "1.5px",
+                  fontFamily: "var(--font-mono)",
+                  color: "#ffffff",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
-                AKINYEMI<span style={{ color: "#3b82f6" }}>.</span>
+                TERMINAL<span style={{ color: "#abff02" }}>_</span>
               </Typography>
             </Box>
 
@@ -97,24 +92,50 @@ const Navbar = () => {
                   component={Link}
                   href={link.href}
                   sx={{
-                    color: "text.primary",
+                    color: "#a2a6b4",
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "14px",
+                    fontWeight: 500,
                     px: 2,
-                    "&:hover": { color: "primary.main", bgcolor: "transparent" },
+                    cursor: "pointer",
+                    textTransform: "none",
+                    "&:hover": { color: "#ffffff", bgcolor: "transparent" },
                   }}
                 >
                   {link.label}
                 </Button>
               ))}
-              <Box sx={{ ml: 2 }}>
-                <ThemeToggleButton />
-              </Box>
+              <Button
+                component={Link}
+                href="/#contact"
+                variant="contained"
+                sx={{
+                  ml: 2,
+                  bgcolor: "#abff02",
+                  color: "#052424",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  letterSpacing: "1.5px",
+                  borderRadius: "8px",
+                  textTransform: "uppercase",
+                  padding: "8px 20px",
+                  boxShadow: "none",
+                  cursor: "pointer",
+                  "&:hover": {
+                    bgcolor: "#c0ff3b",
+                    boxShadow: "none",
+                  }
+                }}
+              >
+                Request Demo
+              </Button>
             </Box>
 
             {/* Mobile Actions */}
             <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center", gap: 1 }}>
-              <ThemeToggleButton />
               <IconButton 
-                sx={{ color: "text.primary" }} 
+                sx={{ color: "#ffffff" }} 
                 onClick={handleDrawerToggle}
               >
                 {mobileOpen ? <X /> : <Menu />}
@@ -132,14 +153,14 @@ const Navbar = () => {
         PaperProps={{
           sx: {
             width: "100%",
-            backgroundColor: "background.default",
+            backgroundColor: "#052424",
             backgroundImage: "none",
           },
         }}
       >
         <Box sx={{ p: 3 }}>
           <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 8 }}>
-            <IconButton onClick={handleDrawerToggle}>
+            <IconButton onClick={handleDrawerToggle} sx={{ color: "#ffffff" }}>
               <X />
             </IconButton>
           </Box>
@@ -150,15 +171,48 @@ const Navbar = () => {
                   component={Link}
                   href={link.href}
                   onClick={handleDrawerToggle}
-                  sx={{ py: 2, textAlign: "center" }}
+                  sx={{ py: 2, textAlign: "center", cursor: "pointer" }}
                 >
                   <ListItemText 
                     primary={link.label} 
-                    primaryTypographyProps={{ variant: "h4", fontWeight: 700 }}
+                    primaryTypographyProps={{ 
+                      variant: "h4", 
+                      fontWeight: 500,
+                      fontFamily: "var(--font-inter)",
+                      color: "#a2a6b4"
+                    }}
+                    sx={{
+                      "&:hover .MuiTypography-root": { color: "#ffffff" }
+                    }}
                   />
                 </ListItemButton>
               </ListItem>
             ))}
+            <ListItem disablePadding sx={{ justifyContent: "center", mt: 4 }}>
+              <Button
+                component={Link}
+                href="/#contact"
+                onClick={handleDrawerToggle}
+                variant="contained"
+                sx={{
+                  bgcolor: "#abff02",
+                  color: "#052424",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  letterSpacing: "1.5px",
+                  borderRadius: "8px",
+                  textTransform: "uppercase",
+                  padding: "12px 32px",
+                  cursor: "pointer",
+                  "&:hover": {
+                    bgcolor: "#c0ff3b",
+                  }
+                }}
+              >
+                Request Demo
+              </Button>
+            </ListItem>
           </List>
         </Box>
       </Drawer>
@@ -169,3 +223,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

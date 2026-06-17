@@ -5,77 +5,79 @@ import {
   Card,
   Typography,
   Container,
-  Grid,
   Stack,
-  useTheme,
+  Grid,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { Code2, Palette, Search, Layers, Zap, ShieldCheck, BarChart3 } from "lucide-react";
+import { Code2, Settings, Clock, Truck, ShieldAlert, BarChart3 } from "lucide-react";
 
 const services = [
   {
-    title: "Full-Stack Development",
-    description: "Building scalable, high-performance web applications using MERN stack and Next.js.",
+    title: "Gate Automation OS",
+    description: "Clear carrier trucks in under 2 minutes with automated OCR verification, driver self-check kiosks, and gate control loops.",
+    icon: <Clock size={32} />,
+    color: "#abff02",
+  },
+  {
+    title: "Spotter Fleet Dispatch",
+    description: "Minimize empty shunter runs and driver idle times with algorithmic task dispatching and real-time gate prioritizations.",
+    icon: <Truck size={32} />,
+    color: "#abff02",
+  },
+  {
+    title: "Dock-to-Door Scheduler",
+    description: "Intelligent scheduling timelines matching incoming loads to open warehouse docks based on carrier priority and crew ETAs.",
+    icon: <Settings size={32} />,
+    color: "#abff02",
+  },
+  {
+    title: "Reefer Telemetry Alerts",
+    description: "Continuous IoT temperature logging and real-time MQTT/SMS notifications for power or temperature deviations.",
+    icon: <ShieldAlert size={32} />,
+    color: "#abff02",
+  },
+  {
+    title: "Enterprise API Core",
+    description: "Seamless REST API integrations connecting Terminal YOS to your corporate WMS/TMS in a single dev sprint.",
     icon: <Code2 size={32} />,
-    color: "#3b82f6",
+    color: "#abff02",
   },
   {
-    title: "Payment Integration",
-    description: "Seamless Paystack and Stripe integrations for secure, robust financial transactions.",
-    icon: <Zap size={32} />,
-    color: "#10b981",
-  },
-  {
-    title: "UI/UX Implementation",
-    description: "Transforming complex designs into pixel-perfect, responsive React components.",
-    icon: <Palette size={32} />,
-    color: "#8b5cf6",
-  },
-  {
-    title: "Admin Dashboards",
-    description: "Developing comprehensive back-office suites with real-time data visualization.",
+    title: "Operational Analytics",
+    description: "Generate historical audits, live dwell-time tracking reports, and spotter utility rates for terminal management.",
     icon: <BarChart3 size={32} />,
-    color: "#f59e0b",
-  },
-  {
-    title: "Security & Auth",
-    description: "Implementing enterprise-grade authentication with JWT and secure session handling.",
-    icon: <ShieldCheck size={32} />,
-    color: "#ef4444",
-  },
-  {
-    title: "SEO & Optimization",
-    description: "Engineering for speed and search visibility to maximize business impact.",
-    icon: <Search size={32} />,
-    color: "#06b6d4",
+    color: "#abff02",
   },
 ];
 
 const experiences = [
   {
-    role: "Full-Stack Engineer",
-    company: "OAU Health Center Project",
-    period: "2024 - Present",
-    description: "Leading the development of a secure healthcare portal, managing electronic health records and automated scheduling systems.",
+    role: "Yard Mapping & Setup",
+    company: "SITE ASSESSMENT",
+    period: "Weeks 1 - 2",
+    description: "We map physical terminal coordinates, digitize loading dock bays, and coordinate initial network connectivity.",
   },
   {
-    role: "Frontend Specialist",
-    company: "Freelance & Consultations",
-    period: "2023 - 2024",
-    description: "Delivered high-converting landing pages and Paystack-integrated platforms for various startup clients.",
+    role: "Hardware Rollout",
+    company: "OCR & KIOSK DEPLOYMENT",
+    period: "Weeks 3 - 4",
+    description: "Install incoming/outgoing OCR license scanners, driver check-in kiosks, and spotter rugged vehicle tablets.",
   },
   {
-    role: "Software Developer Intern",
-    company: "Tech Hub",
-    period: "2022 - 2023",
-    description: "Focused on React state management and UI optimization for large-scale dashboard applications.",
+    role: "Universal WMS API Sync",
+    company: "SYSTEMS INTEGRATION",
+    period: "Weeks 5 - 6",
+    description: "Connect Terminal API controllers with existing TMS/WMS tools (SAP, Manhattan) to align incoming freight queues.",
+  },
+  {
+    role: "Automated Orchestration",
+    company: "SYSTEM LIVE GO-LIVE",
+    period: "Week 7+",
+    description: "Transition to AI-driven spotter dispatching, gate checks, and automated dock door scheduling.",
   },
 ];
 
 const PortfolioPage = () => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
-
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 15, md: 25 } }} id="portfolio">
       {/* Services Section */}
@@ -94,14 +96,15 @@ const PortfolioPage = () => {
               textAlign: "center",
               fontSize: { xs: "3rem", md: "4rem" },
               letterSpacing: "-0.02em",
+              color: "#ffffff"
             }}
           >
-            Professional <span style={{ color: "#3b82f6" }}>Services</span>
+            System <span style={{ color: "#abff02" }}>Solutions</span>
           </Typography>
           <Typography
             variant="h6"
             sx={{
-              color: "text.secondary",
+              color: "#a2a6b4",
               textAlign: "center",
               mb: 10,
               maxWidth: "600px",
@@ -110,8 +113,7 @@ const PortfolioPage = () => {
               lineHeight: 1.6,
             }}
           >
-            Tailored engineering solutions designed to solve real-world 
-            business challenges and elevate your digital presence.
+            Integrated hardware and software modules designed to eliminate yard latency and automate terminal movements.
           </Typography>
         </motion.div>
 
@@ -132,15 +134,14 @@ const PortfolioPage = () => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
-                    borderRadius: 4,
-                    bgcolor: isDark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.8)",
-                    border: "1px solid",
-                    borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
-                    transition: "0.3s",
+                    borderRadius: 3,
+                    bgcolor: "rgba(255,255,255,0.01)",
+                    border: "1px solid rgba(88, 106, 106, 0.2)",
+                    transition: "300ms",
                     "&:hover": {
-                      borderColor: "primary.main",
+                      borderColor: "#abff02",
                       transform: "translateY(-5px)",
-                      bgcolor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.9)",
+                      bgcolor: "rgba(171, 255, 2, 0.02)",
                     }
                   }}
                 >
@@ -148,17 +149,17 @@ const PortfolioPage = () => {
                     sx={{
                       p: 1.5,
                       borderRadius: "12px",
-                      bgcolor: isDark ? `${service.color}20` : `${service.color}10`,
-                      color: service.color,
+                      bgcolor: "rgba(171, 255, 2, 0.1)",
+                      color: "#abff02",
                       mb: 3,
                     }}
                   >
                     {service.icon}
                   </Box>
-                  <Typography variant="h5" fontWeight={800} gutterBottom sx={{ letterSpacing: "-0.01em" }}>
+                  <Typography variant="h5" fontWeight={800} gutterBottom sx={{ letterSpacing: "-0.01em", color: "#ffffff" }}>
                     {service.title}
                   </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: "0.95rem" }}>
+                  <Typography variant="body1" sx={{ lineHeight: 1.6, fontSize: "0.95rem", color: "#a2a6b4" }}>
                     {service.description}
                   </Typography>
                 </Card>
@@ -184,9 +185,10 @@ const PortfolioPage = () => {
               textAlign: "center",
               fontSize: { xs: "3rem", md: "4rem" },
               letterSpacing: "-0.02em",
+              color: "#ffffff"
             }}
           >
-            Engineering <span style={{ color: "#3b82f6" }}>Journey</span>
+            Deployment <span style={{ color: "#abff02" }}>Roadmap</span>
           </Typography>
         </motion.div>
 
@@ -199,7 +201,7 @@ const PortfolioPage = () => {
               top: 0,
               bottom: 0,
               width: 2,
-              bgcolor: "primary.main",
+              bgcolor: "#abff02",
               opacity: 0.2,
               transform: { md: "translateX(-50%)" },
             }}
@@ -231,9 +233,9 @@ const PortfolioPage = () => {
                     width: 12,
                     height: 12,
                     borderRadius: "50%",
-                    bgcolor: "primary.main",
+                    bgcolor: "#abff02",
                     border: "4px solid",
-                    borderColor: "background.default",
+                    borderColor: "#052424",
                     transform: { xs: "translateX(-50%)", md: "translateX(-50%)" },
                     zIndex: 2,
                   }}
@@ -244,24 +246,23 @@ const PortfolioPage = () => {
                     sx={{
                       p: 4,
                       borderRadius: 3,
-                      bgcolor: isDark ? "rgba(255,255,255,0.02)" : "#fff",
-                      border: "1px solid",
-                      borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
+                      bgcolor: "rgba(255,255,255,0.01)",
+                      border: "1px solid rgba(88, 106, 106, 0.2)",
                     }}
                   >
-                    <Typography variant="subtitle2" color="primary" sx={{ fontWeight: 800, mb: 1 }}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 800, mb: 1, color: "#abff02", fontFamily: "var(--font-mono)", fontSize: "12px" }}>
                       {exp.period}
                     </Typography>
-                    <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>
+                    <Typography variant="h5" sx={{ fontWeight: 800, mb: 1, color: "#ffffff" }}>
                       {exp.role}
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{ color: "text.secondary", fontWeight: 700, mb: 2, textTransform: "uppercase", letterSpacing: 1 }}
+                      sx={{ color: "#a2a6b4", fontWeight: 700, mb: 2, textTransform: "uppercase", letterSpacing: 1, fontSize: "11px" }}
                     >
                       {exp.company}
                     </Typography>
-                    <Typography variant="body1" sx={{ color: "text.secondary", lineHeight: 1.7 }}>
+                    <Typography variant="body1" sx={{ color: "#a2a6b4", lineHeight: 1.7 }}>
                       {exp.description}
                     </Typography>
                   </Card>
