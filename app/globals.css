@@ -1,16 +1,40 @@
 :root {
-  --background: #052424;
-  --foreground: #ffffff;
-  --primary: #abff02;
+  --c-black: #000;
+  --c-black-10: rgba(0,0,0,.1);
+  --c-gray: #454742;
+  --c-dark-gray: #7f7f7f;
+  --c-light-gray: #c2c2c2;
+  --c-dark-gray-008: rgba(39,39,39,.08);
+  --c-light-light-gray: #ddd;
+  --c-white: #fff;
+  --c-white-40: hsla(0,0%,100%,.4);
+  --c-white-30: hsla(0,0%,100%,.3);
+  --c-white-20: hsla(0,0%,100%,.2);
+  --c-white-15: hsla(0,0%,100%,.15);
+  --c-white-0: hsla(0,0%,100%,0);
+  --c-dirty-white: #f0f0f0;
+  --c-lime: #abff02;
+  --c-orange: #fb6b3c;
+  --c-dark-green: #052424;
+  --c-dark-green-20: rgba(5,36,36,.2);
+  --c-dark-green-15: rgba(5,36,36,.15);
+  --c-dark-green-05: rgba(5,36,36,.05);
+  --ease-out: cubic-bezier(0,0,.58,1);
+  --font-primary: var(--font-inter), "SuisseIntl", sans-serif;
+  --font-mono: var(--font-mono), "Geist Mono", monospace;
+
+  /* Mappings to theme engine */
+  --background: var(--c-dark-green);
+  --foreground: var(--c-white);
+  --primary: var(--c-lime);
   --primary-bright: #c0ff3b;
   --primary-deep: #98e602;
-  --on-primary: #052424;
-  --ink-soft: #a2a6b4;
+  --on-primary: var(--c-dark-green);
+  --ink-soft: var(--c-light-gray);
   --hairline: #586a6a;
-  --hairline-strong: #ffffff;
-  --nav-bar-bg: #454742;
-  --font-inter: var(--font-inter), 'Inter', sans-serif;
-  --font-mono: var(--font-mono), 'Geist Mono', monospace;
+  --hairline-strong: var(--c-white);
+  --nav-bar-bg: var(--c-gray);
+  --font-inter: var(--font-primary);
 }
 
 [data-theme='light'] {
